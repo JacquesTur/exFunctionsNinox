@@ -133,7 +133,7 @@ this.exFunctions = (function () {
 
 
 
-            var myBadgeVisible = myBadge? `<span class="badge">` + myBadgeValue + `</span>` : ``;
+            var myBadgeVisible = myBadge? `<span class="badge">${myBadgeValue}</span>` : ``;
 
 
 
@@ -146,7 +146,6 @@ this.exFunctions = (function () {
 
                         body {
                             font-family: Roboto, sans-serif;
-height:100%;
                         }
 
                         body .card {
@@ -170,7 +169,7 @@ height:100%;
                 
                             overflow:visible;
                             height: -webkit-fill-available;
-                            background-color:` + myComportementColor + `;
+                            background-color:${myComportementColor};
 
                         }
 
@@ -180,7 +179,7 @@ height:100%;
                             display: flex;
                             align-items: center;
                          
-                            background-color:` + myComportementColor + `;
+                            background-color:  ${myComportementColor} ;
                         }
 
                         .cardRTR .iconRTR {
@@ -190,7 +189,7 @@ height:100%;
 
 
                             
-                            background-color:` + myComportementColor + `;
+                            background-color:${myComportementColor};
 
 
                             color: #ffffff;
@@ -199,7 +198,7 @@ height:100%;
                             
                            
 
-                            color:` + myIconColor + `;
+                            color:${myIconColor};
                             font-size: 35px;
                             border-top-left-radius: 10px;
                             border-bottom-left-radius: 10px;
@@ -213,11 +212,11 @@ height:100%;
                             width:100%;
                             background-color: #003B67;
                             background-color: #ffffff;
-                            background-color:` + myComportementColor + `;
+                            background-color:${myComportementColor};
 
                             color: #ffffff;
                             color:rgb(92,92,92);
-                            color:`+ myTexteGrandColor+`;
+                            color:${myTexteGrandColor};
                             border-top-right-radius: 10px;
                             border-bottom-right-radius: 10px;
 
@@ -261,7 +260,7 @@ height:100%;
                             cursor: pointer;
 
                             background-color: rgb(255,112,67);
-                            background-color:` + myComportementColorHover + `;
+                            background-color:${myComportementColorHover};
                             color: #ffffff;
                             border: 0px solid #eeeeee;
                         }
@@ -272,7 +271,7 @@ height:100%;
                             color: #000000;*/
 
                             background-color: rgb(255,112,67);
-                            background-color:` + myComportementColorHover + `;
+                            background-color:${myComportementColorHover};
 
                             color: #ffffff;
                         }
@@ -281,27 +280,26 @@ height:100%;
                             background-color: green;
                             background-color: rgb(255,112,67);
 
-                            background-color:` + myComportementColorHover + `;
+                            background-color:${myComportementColorHover};
                             
 
                             color: #ffffff
                         }
                 </style>
 
-                <div class="cardRTR" id="`+ myId +`" onclick='window.exFunctions.fireOnClickButton( "` + myId + `","` + params.record._id + `")' >
-                     `+ myBadgeVisible + ` 
+                <div class="cardRTR" id="${myId}" onclick='window.exFunctions.fireOnClickButton( "${myId}","${params.record._id}")' >
+                     ${myBadgeVisible}
                     <div class="iconRTR">
-                        <i style="webkit : enable;" class="`+ myIcon + `"></i>
+                        <i style="webkit : enable;" class="${myIcon}"></i>
                     </div>
                     <div class="text">
-                        
-                        <h4>` + myTexteGrand + `</h4>
-                        <h6 style="color : ` + myTextePetitColor +` ">` + myTextePetit + `</h6>
+                        <h4>${myTexteGrand}</h4>
+                        <h6 style="color : ${myTextePetitColor} ">${myTextePetit}</h6>
                     </div>
                 </div>
 
                 <script> 
-                var x = document.getElementById("` + myId + `"); 
+                var x = document.getElementById("${myId}"); 
                 var p = x.parentNode; 
                 p.style.overflow = "visible"; p.style.padding = "0px"; p.style.margin = "0px";
                 <\/script>
@@ -522,6 +520,8 @@ height:100%;
             }
         }
     }
+
+
     return {
 
         fireSelectComboBox: function (comboBoxId, recordId) {
@@ -591,4 +591,3 @@ height:100%;
 
 // IMPORTANT : force la mise à jour de Ninox pour prendre en compte les fonctions étendues
 database.setSchema(database.originalSchema);
-
