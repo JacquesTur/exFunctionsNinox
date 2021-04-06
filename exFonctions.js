@@ -1,5 +1,3 @@
-alert('début')
-
 this.exFunctions = (function () {
     //debugger;
     //Code d'initialisation des fonctions étendues
@@ -592,4 +590,4 @@ this.exFunctions = (function () {
 
 // IMPORTANT : force la mise à jour de Ninox pour prendre en compte les fonctions étendues
 //database.setSchema(database.originalSchema);
-database.setSchema.compile();
+database.schema.compile();
