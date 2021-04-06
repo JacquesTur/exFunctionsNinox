@@ -504,7 +504,7 @@ this.exFunctions = (function () {
         database.setSchema(database.originalSchema);
 
 
-        $.alert('Fonctions étendues prêtes à être utilisées');
+        $.alert('Fonctions étendues prêtes à être utilisées - rev 0.00.00.01');
     }
 
     function trouverFonctionEvent(expSource, nom) {
