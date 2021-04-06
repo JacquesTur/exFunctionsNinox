@@ -499,6 +499,10 @@ this.exFunctions = (function () {
         });
         Ctx.F[evalFunctor.functorId] = evalFunctor.fn;
 
+        debugger;
+        //database.schema.compile();
+        database.setSchema(database.originalSchema);
+
 
         $.alert('Fonctions étendues prêtes à être utilisées');
     }
@@ -590,5 +594,5 @@ this.exFunctions = (function () {
 
 // IMPORTANT : force la mise à jour de Ninox pour prendre en compte les fonctions étendues
 //database.setSchema(database.originalSchema);
-database.schema.compile();
+
 
