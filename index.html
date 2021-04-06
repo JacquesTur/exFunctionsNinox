@@ -1,3 +1,10 @@
 <script src='exFonctions.js'></script>
 
-<div>Bonjour à tous</div>
+<divsd ss>Bonjour à tous</div>
+
+    <script>
+        var sScriptURL ='https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/exFonctions.js';
+        var oReq = new XMLHttpRequest();
+        oReq.addEventListener('load', function fLoad() {eval(this.responseText + '\r\n//# sourceURL=' + sScriptURL)}); 
+        oReq.open('GET', sScriptURL); oReq.send(); false;
+        </script>

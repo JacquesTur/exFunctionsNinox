@@ -1,3 +1,4 @@
+alert('début')
 
 this.exFunctions = (function () {
     //debugger;
@@ -590,4 +591,4 @@ this.exFunctions = (function () {
 })();
 
 // IMPORTANT : force la mise à jour de Ninox pour prendre en compte les fonctions étendues
-database.setSchema(database.originalSchema);
+//database.setSchema(database.originalSchema);
