@@ -63,8 +63,8 @@ this.exFunctions = (function () {
         try {
             var type = database.typeOf(recordId);
             var compile = queries.parseHuman(database.schema, type, unescape(fn), {});
-//            compile.flags ^= 16;
-//            compile.flags |= 16;
+            //            compile.flags ^= 16;
+            //            compile.flags |= 16;
             if (compile.hasErrors()) return 'Erreur d\'expression : ' + compile.errorMessage();
             var result = database.loadNode(recordId, (function (e, i) {
                 return e ? 'Failed to load record: ' + e : i ? void compile.evaluate(database, i, (function (error, t) {
@@ -109,7 +109,7 @@ this.exFunctions = (function () {
             id = prefix.toString() + num.toString();
         }
         return id;
-    } 
+    }
 
     function exButton(fnt, params, db, ret) {
         //debugger;
@@ -133,7 +133,7 @@ this.exFunctions = (function () {
 
 
 
-            var myBadgeVisible = myBadge? `<span class="badge">${myBadgeValue}</span>` : ``;
+            var myBadgeVisible = myBadge ? `<span class="badge">${myBadgeValue}</span>` : ``;
 
 
 
@@ -304,25 +304,25 @@ this.exFunctions = (function () {
                 p.style.overflow = "visible"; p.style.padding = "0px"; p.style.margin = "0px";
                 <\/script>
 `;
- 
 
 
 
 
 
 
-/* 
-            var codeHTML = '<select class=\'stringeditor\' style=\'height: 100%; width:100%; overflow:visible; padding:0px; background:none; padding-left:5px\' id=' + id +
-                '  onchange=\'window.exFunctions.fireSelectComboBox( "' + id + '","' + params.record._id + '")\'>' +
-                strLines +
-                ' </select>' +
-                '<script>' +
-                'var x = document.getElementById("' + id + '"); ' +
-                'var p = x.parentNode; ' +
 
-                'p.style.overflow = "visible"; p.style.padding = "0px"; p.style.margin = "0px"; p.id = "coucou";' +
-
-                '<\/script>'; */
+            /* 
+                        var codeHTML = '<select class=\'stringeditor\' style=\'height: 100%; width:100%; overflow:visible; padding:0px; background:none; padding-left:5px\' id=' + id +
+                            '  onchange=\'window.exFunctions.fireSelectComboBox( "' + id + '","' + params.record._id + '")\'>' +
+                            strLines +
+                            ' </select>' +
+                            '<script>' +
+                            'var x = document.getElementById("' + id + '"); ' +
+                            'var p = x.parentNode; ' +
+            
+                            'p.style.overflow = "visible"; p.style.padding = "0px"; p.style.margin = "0px"; p.id = "coucou";' +
+            
+                            '<\/script>'; */
 
             console.log(buttonHTML);
             ret(buttonHTML);
@@ -500,12 +500,11 @@ this.exFunctions = (function () {
         });
         Ctx.F[evalFunctor.functorId] = evalFunctor.fn;
 
-        debugger;
-        //database.schema.compile();
+        // IMPORTANT : force la mise à jour de Ninox pour prendre en compte les fonctions étendues
         database.setSchema(database.originalSchema);
 
 
-        $.alert('Fonctions étendues prêtes à être utilisées - '+ revision );
+        $.alert('Fonctions étendues prêtes à être utilisées - ' + revision);
     }
 
     function trouverFonctionEvent(expSource, nom) {
@@ -541,7 +540,7 @@ this.exFunctions = (function () {
                 var expOnclick = queries.parseHuman(database.schema, n.field.type, unescape(n.field.onClick), {});
 
                 var fnOnSelect = trouverFonctionEvent(expOnclick, 'onSelect');
-        
+
                 if (!fnOnSelect) {
                     if (n && n.field && n.field.exp && n.field.exp) {
                         fnOnSelect = trouverFonctionEvent(n.field.exp, 'onSelect');
@@ -572,7 +571,7 @@ this.exFunctions = (function () {
                 var expOnclick = queries.parseHuman(database.schema, n.field.type, unescape(n.field.onClick), {});
 
                 var fnOnClick = trouverFonctionEvent(expOnclick, 'onClick');
-        
+
                 if (!fnOnClick) {
                     if (n && n.field && n.field.exp && n.field.exp) {
                         fnOnClick = trouverFonctionEvent(n.field.exp, 'onClick');
@@ -593,7 +592,6 @@ this.exFunctions = (function () {
 
 })();
 
-// IMPORTANT : force la mise à jour de Ninox pour prendre en compte les fonctions étendues
-//database.setSchema(database.originalSchema);
+
 
 
