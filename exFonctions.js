@@ -1,3 +1,4 @@
+const revision = 'rev 0.00.00.02'
 this.exFunctions = (function () {
     //debugger;
     //Code d'initialisation des fonctions étendues
@@ -504,7 +505,7 @@ this.exFunctions = (function () {
         database.setSchema(database.originalSchema);
 
 
-        $.alert('Fonctions étendues prêtes à être utilisées - rev 0.00.00.01');
+        $.alert('Fonctions étendues prêtes à être utilisées - '+ revision );
     }
 
     function trouverFonctionEvent(expSource, nom) {
