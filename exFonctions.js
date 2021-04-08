@@ -134,9 +134,6 @@ this.exFunctions = (function () {
     function exButton(fnt, params, db, ret) {
         //debugger;
         try {
-            //
-
-
             var myBadge = params.Badge;
             var myBadgeValue = params.BadgeValue;
             var myTexteGrand = params.TexteGrand;
@@ -148,22 +145,14 @@ this.exFunctions = (function () {
             var myComportementColor = params.ComportementColor;
             var myComportementColorHover = params.ComportementColorHover;
 
-
             var myId = generateUniqueId("buttonId");
 
-
-
             var myBadgeVisible = myBadge ? `<span class="badge">${myBadgeValue}</span>` : ``;
-
-
 
             var buttonHTML = `
                 <style>
                     @import url("https://fonts.googleapis.com/css?family=Roboto:400,400i,700");
-
                     @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css");
-
-
                         body {
                             font-family: Roboto, sans-serif;
                         }
@@ -173,7 +162,6 @@ this.exFunctions = (function () {
                             /*top: 50%;
                             left: 50%;
                             transform: translate(-50%, -50%);*/
-
                         }
                     
                         .cardRTR {
@@ -190,7 +178,6 @@ this.exFunctions = (function () {
                             overflow:visible;
                             height: -webkit-fill-available;
                             background-color:${myComportementColor};
-
                         }
 
                         .cardRTR > div {
@@ -198,7 +185,6 @@ this.exFunctions = (function () {
                             /*transition: 0.3s all ease-in-out;*/
                             display: flex;
                             align-items: center;
-                         
                             background-color:  ${myComportementColor} ;
                         }
 
@@ -206,18 +192,9 @@ this.exFunctions = (function () {
                             background-color: red;
                             background-color: rgb(255,112,67);
                             background-color: #ffffff;
-
-
-                            
                             background-color:${myComportementColor};
-
-
                             color: #ffffff;
                             color:rgb(92,92,92);
-
-                            
-                           
-
                             color:${myIconColor};
                             font-size: 35px;
                             border-top-left-radius: 10px;
@@ -233,13 +210,11 @@ this.exFunctions = (function () {
                             background-color: #003B67;
                             background-color: #ffffff;
                             background-color:${myComportementColor};
-
                             color: #ffffff;
                             color:rgb(92,92,92);
                             color:${myTexteGrandColor};
                             border-top-right-radius: 10px;
                             border-bottom-right-radius: 10px;
-
                             border: 0px solid #eeeeee;
                         }
 
@@ -249,27 +224,19 @@ this.exFunctions = (function () {
                             color: #ffffff;
                             background-color: #ffffff;
                             background-color: red;
-
                             box-shadow: inset 0px 0px 6px 6px #E0E0E0;
-
                             box-shadow: inset 0px 0px 0px 0px #E0E0E0;
-
                             font-weight: bold;
                             /*width: 65px;*/
                             height: 35px;
-
                             border-radius: 50%;
-
                             padding: 5px;
                             font-size: 20px;
                             box-sizing: border-box;
-
                             display: flex;
                             align-items: center;
                             justify-content: center;
-
                             border: 0px solid #000000;
-                            
                             top: -10px;
                             right: -10px;
                             z-index: 2;
@@ -278,7 +245,6 @@ this.exFunctions = (function () {
                         .cardRTR:hover {
                             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
                             cursor: pointer;
-
                             background-color: rgb(255,112,67);
                             background-color:${myComportementColorHover};
                             color: #ffffff;
@@ -289,20 +255,15 @@ this.exFunctions = (function () {
                             /*background-color: #29C1F4;
                             background-image: radial-gradient(#96e1fa, #2ac1f4);
                             color: #000000;*/
-
                             background-color: rgb(255,112,67);
                             background-color:${myComportementColorHover};
-
                             color: #ffffff;
                         }
 
                         .cardRTR:hover .iconRTR {
                             background-color: green;
                             background-color: rgb(255,112,67);
-
                             background-color:${myComportementColorHover};
-                            
-
                             color: #ffffff
                         }
                 </style>
@@ -325,35 +286,13 @@ this.exFunctions = (function () {
                 <\/script>
 `;
 
-
-
-
-
-
-
-            /* 
-                        var codeHTML = '<select class=\'stringeditor\' style=\'height: 100%; width:100%; overflow:visible; padding:0px; background:none; padding-left:5px\' id=' + id +
-                            '  onchange=\'window.exFunctions.fireSelectComboBox( "' + id + '","' + params.record._id + '")\'>' +
-                            strLines +
-                            ' </select>' +
-                            '<script>' +
-                            'var x = document.getElementById("' + id + '"); ' +
-                            'var p = x.parentNode; ' +
-            
-                            'p.style.overflow = "visible"; p.style.padding = "0px"; p.style.margin = "0px"; p.id = "coucou";' +
-            
-                            '<\/script>'; */
-
             console.log(buttonHTML);
             ret(buttonHTML);
         }
         catch (err) {
             var msgErr = err.message + ' à la ligne ' + err.line + ', colonne ' + err.column;
-
             return ret(msgErr);
         }
-
-
     }
 
     function exComboBox(fnt, params, db, ret) {
