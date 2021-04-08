@@ -81,6 +81,26 @@ this.exFunctions = (function () {
         }
         return result;
     }
+
+    function fireEvalGlobal(fn) {
+
+        try {
+        var compile = queries.parseHuman(database.schema, null, unescape(fn), {});
+
+        if (compile.hasErrors()) return 'Erreur d\'expression : ' + compile.errorMessage();
+        compile.evaluate(database, i, (function (error, t) {
+            if (error)
+                return 'Failed to evaluate expression: ' + error;
+            return t;
+        }));}
+        catch (err) {
+            var msgErr = err.message + ' à la ligne ' + err.line + ', colonne ' + err.column;
+
+            return msgErr;
+        }
+        return result;
+
+    }
     function fireExp(exp, recordId) {
 
 
