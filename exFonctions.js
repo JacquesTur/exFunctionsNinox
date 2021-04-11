@@ -606,8 +606,8 @@ window.exFunctions = (function () {
         },
         
         fireOnClickButtonNavBar: function (buttonNavBarId) {
-            alert("Je clique sur le bouton dans la fonction fireOnClickButtonNavBar")
-            fireEvalGlobal('onClickButtonNavBarNinox');
+            bt = document.getElementById(myButtonNavBarId);
+            fireEvalGlobal('onClickButtonNavBarNinox('+buttonNavBarId+','+bt.innerText+')');
         }
         
     }
