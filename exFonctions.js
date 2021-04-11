@@ -295,6 +295,63 @@ this.exFunctions = (function () {
         }
     }
 
+    function exButtonNavBar(fnt, params, db, ret) {
+    //debugger;
+    try {
+        var myButtonNavBarTitle = params.Title;
+        var myButtonNavBarId = generateUniqueId("buttonNavBarId");
+
+        var myButtonNavBarHTML = `
+                <script>
+                var buttonCreated = 0;
+
+                var myMenuTop = document.getElementsByClassName('hud-menu-right')[0];
+
+                if (buttonCreated == 0){
+                    // Création du bouton
+                    var button = document.createElement("button");
+                    button.setAttribute("id", "${myButtonNavBarId}");
+                    button.innerHTML = "${myButtonNavBarTitle}";
+                    button.setAttribute("onclick", 'window.exFunctions.fireOnClickButtonNavBar( "${myButtonNavBarId}")');
+
+
+                    // Création du div
+                    //////////////////////////////////////////////
+                    var divMyBouton = document.createElement('div');
+                    //divMyBouton.innerHTML = 'Hi there!';
+                    divMyBouton.className = 'hud-menu-group';
+
+                    //Ajout du bouton dans le div.
+                    divMyBouton.appendChild(button);
+
+                    // Ajout du nouveau div dans le menu
+                    //////////////////////////////////////////////
+                    myMenuTop.append( divMyBouton );
+
+                    buttonCreated = 1;
+                }
+
+            var x = document.getElementById("${myButtonNavBarId}"); 
+            var p = x.parentNode; 
+            p.style.overflow = "visible"; p.style.padding = "0px"; p.style.margin = "0px";
+            <\/script>`;
+
+        console.log(myButtonNavBarHTML);
+        ret(myButtonNavBarHTML);
+    } catch (err) {
+        var msgErr = err.message + ' à la ligne ' + err.line + ', colonne ' + err.column;
+
+        return ret(msgErr);
+    }
+}
+
+    
+    
+    
+    
+    
+    
+    
     function exComboBox(fnt, params, db, ret) {
         //debugger;
         try {
@@ -417,6 +474,7 @@ this.exFunctions = (function () {
         evalFunctor.exFunctions['exDownloadFile'] = exDownloadFile;
         evalFunctor.exFunctions['exPrompt'] = exPrompt;
         evalFunctor.exFunctions['exButton'] = exButton;
+        evalFunctor.exFunctions['exButtonNavBar'] = exButtonNavBar;
 
         /*
         mise en palce de la nouvelle function eval dans le tableau des fonctions de Ninox. 
@@ -546,7 +604,13 @@ this.exFunctions = (function () {
 
 
             }
+        },
+        
+        fireOnClickButtonNavBar: function (buttonNavBarId) {
+            alert("Je clique sur le bouton dans la fonction fireOnClickButtonNavBar")
+            fireEvalGlobal('onClickButtonNavBarNinox');
         }
+        
     }
 
 })();
