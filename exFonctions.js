@@ -313,9 +313,9 @@ window.exFunctions = (function () {
                     var button = document.createElement("button");
                 }
 
-                button.id = "${myButtonNavBarId}";
-                button.innerHTML = "${myButtonNavBarTitle}";
-                button.onclick = 'window.exFunctions.fireOnClickButtonNavBar( "${myButtonNavBarId}",  "${myButtonNavBarTitle}")';
+                button.id = myButtonNavBarId;
+                button.innerText = myButtonNavBarTitle;
+                button.onclick = `window.exFunctions.fireOnClickButtonNavBar( "${myButtonNavBarId}",  "${myButtonNavBarTitle}")`;
 
                 // Création du div
                 //////////////////////////////////////////////
