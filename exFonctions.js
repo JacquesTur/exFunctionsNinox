@@ -1,4 +1,4 @@
-const revision = 'rev 0.00.00.09';
+const revision = 'rev 0.00.00.10';
 window.exFunctions = null;
 window.exFunctions = (function () {
     //debugger;
@@ -611,7 +611,7 @@ window.exFunctions = (function () {
 
         fireOnClickButtonNavBar: function (buttonNavBarId) {
             bt = document.getElementById(buttonNavBarId);
-            fireEvalGlobal('onClickButtonNavBarNinox(' + buttonNavBarId + ',' + bt.innerText + ')');
+            console(fireEvalGlobal('onClickButtonNavBarNinox("' + buttonNavBarId + '","' + bt.innerText + '")'));
         }
 
     }
