@@ -85,14 +85,15 @@ window.exFunctions = (function () {
     function fireEvalGlobal(fn) {
 
         try {
-        var compile = queries.parseHuman(database.schema, null, unescape(fn), {});
+            var compile = queries.parseHuman(database.schema, null, unescape(fn), {});
 
-        if (compile.hasErrors()) return 'Erreur d\'expression : ' + compile.errorMessage();
-        compile.evaluate(database, i, (function (error, t) {
-            if (error)
-                return 'Failed to evaluate expression: ' + error;
-            return t;
-        }));}
+            if (compile.hasErrors()) return 'Erreur d\'expression : ' + compile.errorMessage();
+            compile.evaluate(database, i, (function (error, t) {
+                if (error)
+                    return 'Failed to evaluate expression: ' + error;
+                return t;
+            }));
+        }
         catch (err) {
             var msgErr = err.message + ' à la ligne ' + err.line + ', colonne ' + err.column;
 
@@ -296,61 +297,66 @@ window.exFunctions = (function () {
     }
 
     function exButtonNavBar(fnt, params, db, ret) {
-    //debugger;
-    try {
-        var myButtonNavBarTitle = params.Title;
-        var myButtonNavBarId = generateUniqueId("buttonNavBarId");
+        //debugger;
+        try {
+            var myButtonNavBarTitle = params.Title;
+            var myButtonNavBarId = params.buttonId;
+            //        var myButtonNavBarId = generateUniqueId("buttonNavBarId");
 
-        var myButtonNavBarHTML = `
+            var myButtonNavBarHTML = `
                 <script>
-                var buttonCreated = 0;
 
-                var myMenuTop = document.getElementsByClassName('hud-menu-right')[0];
+            var button = document.getElementById(myButtonNavBarId);
+            var myMenuTop = document.getElementsByClassName('hud-menu-right')[0];
 
-                if (buttonCreated == 0){
+            if (myMenuTop) {
+                if (!button) {
                     // Création du bouton
                     var button = document.createElement("button");
-                    button.setAttribute("id", "${myButtonNavBarId}");
-                    button.innerHTML = "${myButtonNavBarTitle}";
-                    button.setAttribute("onclick", 'window.exFunctions.fireOnClickButtonNavBar( "${myButtonNavBarId}")');
-
-                    // Création du div
-                    //////////////////////////////////////////////
-                    var divMyBouton = document.createElement('div');
-                    //divMyBouton.innerHTML = 'Hi there!';
-                    divMyBouton.className = 'hud-menu-group';
-
-                    //Ajout du bouton dans le div.
-                    divMyBouton.appendChild(button);
-
-                    // Ajout du nouveau div dans le menu
-                    //////////////////////////////////////////////
-                    myMenuTop.append( divMyBouton );
-
-                    buttonCreated = 1;
                 }
 
-            var x = document.getElementById("${myButtonNavBarId}"); 
-            var p = x.parentNode; 
-            p.style.overflow = "visible"; p.style.padding = "0px"; p.style.margin = "0px";
-            <\/script>`;
+                button.id = "${myButtonNavBarId}";
+                button.innerHTML = "${myButtonNavBarTitle}";
+                button.onclick = 'window.exFunctions.fireOnClickButtonNavBar( "${myButtonNavBarId}",  "${myButtonNavBarTitle}")';
 
-        console.log(myButtonNavBarHTML);
-        ret(myButtonNavBarHTML);
-    } catch (err) {
-        var msgErr = err.message + ' à la ligne ' + err.line + ', colonne ' + err.column;
+                // Création du div
+                //////////////////////////////////////////////
+                var divMyBouton = document.createElement('div');
+                //divMyBouton.innerHTML = 'Hi there!';
+                divMyBouton.className = 'hud-menu-group';
 
-        return ret(msgErr);
+                //Ajout du bouton dans le div.
+                divMyBouton.appendChild(button);
+
+                // Ajout du nouveau div dans le menu
+                //////////////////////////////////////////////
+                myMenuTop.append(divMyBouton);
+
+
+                /* var x = document.getElementById("${myButtonNavBarId}");
+                 var p = x.parentNode;
+                 p.style.overflow = "visible"; p.style.padding = "0px"; p.style.margin = "0px";*/
+            } else
+                cosole.log('eexButtonNavBar : navigation bar not found !');
+                <\/script>`;
+
+                console.log(myButtonNavBarHTML);
+                ret(myButtonNavBarHTML);
+           
+        } catch (err) {
+            var msgErr = err.message + ' à la ligne ' + err.line + ', colonne ' + err.column;
+
+            return ret(msgErr);
+        }
     }
-}
 
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
     function exComboBox(fnt, params, db, ret) {
         //debugger;
         try {
@@ -481,14 +487,14 @@ window.exFunctions = (function () {
         Un autre tableau repertorie les confguration des functions.
         Les paramètres sont les suivants.
         Dans le cas d'un appel à la fonction eval d'origine :
-
+    
             fnt : Code Ninox à evaluer.
             params : Enregistrement courant (this) qui servira de context pour évaluer le code fnt.
-
+    
         Dans le cas d'un appel aux fonctions étendues :
             fnt : chaine de caractère qui contine soit le nom de la fonction étendue.
             params : objet qui contien les paramuètres d'appele des functions étendu.
-
+    
         dans les deux cas :
             db : objet database.
             ret : function à appeler à la fin de la function. Les functions sont appellée par empilement. 
@@ -604,12 +610,12 @@ window.exFunctions = (function () {
 
             }
         },
-        
+
         fireOnClickButtonNavBar: function (buttonNavBarId) {
             bt = document.getElementById(myButtonNavBarId);
-            fireEvalGlobal('onClickButtonNavBarNinox('+buttonNavBarId+','+bt.innerText+')');
+            fireEvalGlobal('onClickButtonNavBarNinox(' + buttonNavBarId + ',' + bt.innerText + ')');
         }
-        
+
     }
 
 })();
