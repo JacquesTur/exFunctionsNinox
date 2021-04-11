@@ -1,5 +1,5 @@
 const revision = 'rev 0.00.00.04'
-this.exFunctions = (function () {
+window.exFunctions = (function () {
     //debugger;
     //Code d'initialisation des fonctions étendues
     var Ctx = new queries.JSRuntimeContext;
@@ -313,7 +313,6 @@ this.exFunctions = (function () {
                     button.setAttribute("id", "${myButtonNavBarId}");
                     button.innerHTML = "${myButtonNavBarTitle}";
                     button.setAttribute("onclick", 'window.exFunctions.fireOnClickButtonNavBar( "${myButtonNavBarId}")');
-
 
                     // Création du div
                     //////////////////////////////////////////////
