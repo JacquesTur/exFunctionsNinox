@@ -1,4 +1,4 @@
-const revision = 'rev 0.00.00.05'
+const revision = 'rev 0.00.00.06'
 window.exFunctions = (function () {
     //debugger;
     //Code d'initialisation des fonctions étendues
