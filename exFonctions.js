@@ -309,7 +309,7 @@ this.exFunctions = (function () {
 
                 if (buttonCreated == 0){
                     // Création du bouton
-                    var button = document.createElement("button");
+                    var button = document.createElement("div");
                     button.setAttribute("id", "${myButtonNavBarId}");
                     button.innerHTML = "${myButtonNavBarTitle}";
                     button.setAttribute("onclick", 'window.exFunctions.fireOnClickButtonNavBar( "${myButtonNavBarId}")');
