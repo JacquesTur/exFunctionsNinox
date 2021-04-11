@@ -1,4 +1,4 @@
-const revision = 'rev 0.00.00.10';
+var revision = 'rev 0.00.00.13';
 window.exFunctions = null;
 window.exFunctions = (function () {
     //debugger;
@@ -85,13 +85,15 @@ window.exFunctions = (function () {
 
     function fireEvalGlobal(fn) {
 
+        var result='';
         try {
             var compile = queries.parseHuman(database.schema, null, unescape(fn), {});
 
             if (compile.hasErrors()) return 'Erreur d\'expression : ' + compile.errorMessage();
-            compile.evaluate(database, i, (function (error, t) {
+            compile.evaluate(database, null, (function (error, t) {
                 if (error)
                     return 'Failed to evaluate expression: ' + error;
+                result = t;
                 return t;
             }));
         }
@@ -611,13 +613,12 @@ window.exFunctions = (function () {
 
         fireOnClickButtonNavBar: function (buttonNavBarId) {
             bt = document.getElementById(buttonNavBarId);
-            console(fireEvalGlobal('onClickButtonNavBarNinox("' + buttonNavBarId + '","' + bt.innerText + '")'));
+            console.log('exButtonNavBar.onclick:'+fireEvalGlobal('onClickButtonNavBarNinox("' + buttonNavBarId + '","' + bt.innerText + '")'));
         }
 
     }
 
 })();
-
 
 
 
