@@ -299,7 +299,7 @@ window.exFunctions = (function () {
     function exButtonNavBar(fnt, params, db, ret) {
         //debugger;
         try {
-            var myButtonNavBarTitle = params.Title;
+            var myButtonNavBarTitle = params.title;
             var myButtonNavBarId = params.buttonId;
             //        var myButtonNavBarId = generateUniqueId("buttonNavBarId");
 
