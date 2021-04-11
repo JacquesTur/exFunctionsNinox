@@ -303,8 +303,6 @@ window.exFunctions = (function () {
             var myButtonNavBarId = params.buttonId;
             //        var myButtonNavBarId = generateUniqueId("buttonNavBarId");
 
-            var myButtonNavBarHTML = `
-                <script>
 
             var button = document.getElementById(myButtonNavBarId);
             var myMenuTop = document.getElementsByClassName('hud-menu-right')[0];
@@ -338,11 +336,11 @@ window.exFunctions = (function () {
                  p.style.overflow = "visible"; p.style.padding = "0px"; p.style.margin = "0px";*/
             } else
                 cosole.log('eexButtonNavBar : navigation bar not found !');
-                <\/script>`;
 
-                console.log(myButtonNavBarHTML);
-                ret(myButtonNavBarHTML);
-           
+
+            console.log(myButtonNavBarHTML);
+            ret(button && myMenuTop);
+
         } catch (err) {
             var msgErr = err.message + ' à la ligne ' + err.line + ', colonne ' + err.column;
 
