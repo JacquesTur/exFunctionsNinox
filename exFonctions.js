@@ -609,7 +609,7 @@ window.exFunctions = (function () {
         },
 
         fireOnClickButtonNavBar: function (buttonNavBarId) {
-            bt = document.getElementById(myButtonNavBarId);
+            bt = document.getElementById(buttonNavBarId);
             fireEvalGlobal('onClickButtonNavBarNinox(' + buttonNavBarId + ',' + bt.innerText + ')');
         }
 
