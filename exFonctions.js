@@ -337,8 +337,6 @@ window.exFunctions = (function () {
             } else
                 cosole.log('eexButtonNavBar : navigation bar not found !');
 
-
-            console.log(myButtonNavBarHTML);
             ret(button && myMenuTop);
 
         } catch (err) {
