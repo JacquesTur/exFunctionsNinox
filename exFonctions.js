@@ -1,4 +1,4 @@
-const revision = 'rev 0.00.00.07';
+const revision = 'rev 0.00.00.08';
 window.exFunctions = (function () {
     //debugger;
     //Code d'initialisation des fonctions étendues
@@ -315,10 +315,8 @@ window.exFunctions = (function () {
 
                 button.id = myButtonNavBarId;
                 button.innerText = myButtonNavBarTitle;
-                
-//                button.onclick = `window.exFunctions.fireOnClickButtonNavBar( "${myButtonNavBarId}",  "${myButtonNavBarTitle}")`;
 
-                button.setAttribute( "onclick",  `window.exFunctions.fireOnClickButtonNavBar( myButtonNavBarId,  myButtonNavBarTitle);`);
+                button.setAttribute( "onclick",  `window.exFunctions.fireOnClickButtonNavBar( "${myButtonNavBarId}");`);
 
                 // Création du div
                 //////////////////////////////////////////////
