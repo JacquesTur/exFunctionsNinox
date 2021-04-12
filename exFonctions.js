@@ -1,4 +1,4 @@
-var revision = 'rev 0.00.00.14';
+var revision = 'rev 0.00.00.15';
 window.exFunctions = (function () {
     //debugger;
     //Code d'initialisation des fonctions étendues
@@ -345,7 +345,7 @@ window.exFunctions = (function () {
             } else
                 cosole.log('eexButtonNavBar : navigation bar not found !');
 
-            ret(button && myMenuTop);
+            ret((button!=null) && (myMenuTop!=null));
 
         } catch (err) {
             var msgErr = err.message + ' à la ligne ' + err.line + ', colonne ' + err.column;
