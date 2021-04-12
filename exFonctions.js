@@ -1,5 +1,4 @@
-var revision = 'rev 0.00.00.13';
-window.exFunctions = null;
+var revision = 'rev 0.00.00.14';
 window.exFunctions = (function () {
     //debugger;
     //Code d'initialisation des fonctions étendues
@@ -318,6 +317,8 @@ window.exFunctions = (function () {
 
                 button.id = myButtonNavBarId;
                 button.innerText = myButtonNavBarTitle;
+                button.setAttribute( "class", "hud-menu-button menu-nav i-light-grey");
+                button.style.border = "none";
 
                 button.setAttribute( "onclick",  `window.exFunctions.fireOnClickButtonNavBar( "${myButtonNavBarId}");`);
 
@@ -325,13 +326,16 @@ window.exFunctions = (function () {
                 //////////////////////////////////////////////
                 var divMyBouton = document.createElement('div');
                 //divMyBouton.innerHTML = 'Hi there!';
-                divMyBouton.className = 'hud-menu-group';
+
 
                 //Ajout du bouton dans le div.
                 divMyBouton.appendChild(button);
 
                 // Ajout du nouveau div dans le menu
                 //////////////////////////////////////////////
+    
+//                ui.recordNavigation.$navs.appendTo(divMyBouton);
+
                 myMenuTop.append(divMyBouton);
 
 
