@@ -84,7 +84,7 @@ window.exFunctions = (function () {
 
     function fireEvalGlobal(fn) {
 
-        var result='';
+        var result = '';
         try {
             var compile = queries.parseHuman(database.schema, null, unescape(fn), {});
 
@@ -317,10 +317,10 @@ window.exFunctions = (function () {
 
                 button.id = myButtonNavBarId;
                 button.innerText = myButtonNavBarTitle;
-                button.setAttribute( "class", "hud-menu-button menu-nav i-light-grey");
+                button.setAttribute("class", "hud-menu-button menu-nav i-light-grey");
                 button.style.border = "none";
 
-                button.setAttribute( "onclick",  `window.exFunctions.fireOnClickButtonNavBar( "${myButtonNavBarId}");`);
+                button.setAttribute("onclick", `window.exFunctions.fireOnClickButtonNavBar( "${myButtonNavBarId}");`);
 
                 // Création du div
                 //////////////////////////////////////////////
@@ -333,8 +333,8 @@ window.exFunctions = (function () {
 
                 // Ajout du nouveau div dans le menu
                 //////////////////////////////////////////////
-    
-//                ui.recordNavigation.$navs.appendTo(divMyBouton);
+
+                //                ui.recordNavigation.$navs.appendTo(divMyBouton);
 
                 myMenuTop.append(divMyBouton);
 
@@ -345,7 +345,7 @@ window.exFunctions = (function () {
             } else
                 cosole.log('eexButtonNavBar : navigation bar not found !');
 
-            ret((button!=null) && (myMenuTop!=null));
+            ret((button != null) && (myMenuTop != null));
 
         } catch (err) {
             var msgErr = err.message + ' à la ligne ' + err.line + ', colonne ' + err.column;
@@ -617,7 +617,7 @@ window.exFunctions = (function () {
 
         fireOnClickButtonNavBar: function (buttonNavBarId) {
             bt = document.getElementById(buttonNavBarId);
-            console.log('exButtonNavBar.onclick:'+fireEvalGlobal('onClickButtonNavBarNinox("' + buttonNavBarId + '","' + bt.innerText + '")'));
+            console.log('exButtonNavBar.onclick:' + fireEvalGlobal('onClickButtonNavBarNinox("' + buttonNavBarId + '","' + bt.innerText + '")'));
         }
 
     }
