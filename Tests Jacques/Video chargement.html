@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<body>
+
+<div class="example">
+
+    <button type="button">Load video</button>
+    <video controls width="250"> </video>
+	<div id='chargement' display="none">Chargement en cours...</div>
+    <div class="event-log">
+        <label>Event log:</label>
+        <textarea readonly class="event-log-contents"></textarea>
+    </div>
+
+</div>
+
+<script>
+
+const loadVideo = document.querySelector('button');
+const video = document.querySelector('video');
+const eventLog = document.querySelector('.event-log-contents');
+let source = null;
+
+function handleEvent(event) {
+    eventLog.textContent = eventLog.textContent + event.type+'\n';
+    debugger;
+    if (event.type == 'seeking' || event.type == 'waiting' || event.type == 'loadstart' ) { 			document.getElementById('chargement').style.display = 'inherit';
+    }
+    if (event.type == 'seeked' || event.type == 'canplay') { document.getElementById('chargement').style.display = 'none';
+    }
+
+}
+
+video.addEventListener('loadstart', handleEvent);
+video.addEventListener('waiting', handleEvent);
+video.addEventListener('seeked', handleEvent);
+video.addEventListener('seeking', handleEvent);
+
+//video.addEventListener('progress', handleEvent);
+
+video.addEventListener('canplay', handleEvent);
+video.addEventListener('canplaythrough', handleEvent);
+
+loadVideo.addEventListener('click', () => {
+
+    if (source) {
+        document.location.reload();
+    } else {
+        loadVideo.textContent = "Reset example";
+        source = document.createElement('source');
+        source.setAttribute('src', 'https://share.ninox.com/z4sjgh3j9k4v9xtbamjsz1n4dh0jylac1pzw');
+        source.setAttribute('type', 'video/mp4');
+
+        video.appendChild(source);
+    }
+});
+</script>
+</body>
+</html>
+
