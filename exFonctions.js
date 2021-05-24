@@ -1,4 +1,4 @@
-var revision = 'rev 0.00.00.16';
+var revision = 'rev 0.00.00.17';
 
 
 window.exFunctions = (function () {
@@ -778,6 +778,7 @@ window.exFunctions = (function () {
         link.click();
         link.remove();
         ret(downloadLink);
+        console.log("ExDownLoadFile("+params.record._id+", "+params.fileName+")");
     }
 
     function exPrompt(fnt, params, db, ret) {
