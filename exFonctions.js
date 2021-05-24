@@ -1,4 +1,4 @@
-var revision = 'rev 0.00.00.17';
+var revision = 'rev 0.00.00.17d';
 
 
 window.exFunctions = (function () {
@@ -29,6 +29,10 @@ window.exFunctions = (function () {
     function exAlert(fnt, params, db, ret) {
         alert(params.titre + '<br><br>' + params.message);
         ret();
+    }
+
+    function exGetVersion(fnt, params, db, ret) {
+        ret(revision);
     }
 
     function exPlus(fnt, params, db, ret) {
@@ -529,17 +533,17 @@ window.exFunctions = (function () {
             return ret(msgErr);
         }
     }
-    
-    function exAddStyleToHead(style){              
-            /* Create style element */
-            var css = document.createElement('style');
-            if (css.styleSheet) 
-                css.styleSheet.cssText = style;
-            else 
-                css.appendChild(document.createTextNode(style));
-              
-            /* Append style to the head element */
-            document.getElementsByTagName("head")[0].appendChild(css);
+
+    function exAddStyleToHead(style) {
+        /* Create style element */
+        var css = document.createElement('style');
+        if (css.styleSheet)
+            css.styleSheet.cssText = style;
+        else
+            css.appendChild(document.createTextNode(style));
+
+        /* Append style to the head element */
+        document.getElementsByTagName("head")[0].appendChild(css);
     }
 
     function exSelectionAutocomplete(fnt, params, db, ret) {
@@ -556,7 +560,7 @@ window.exFunctions = (function () {
 
             if (myMenuTop) {
 
-                if (!myInput){
+                if (!myInput) {
                     // Création du input de recherche
                     myInput = document.createElement("input");
                     myInput.id = myInputID;
@@ -568,7 +572,7 @@ window.exFunctions = (function () {
                     myInput.setAttribute("class", "myButtonNavBarSearch");
                 }
 
-                if (!myFilterOpacity){
+                if (!myFilterOpacity) {
                     // Création du div pour appliquer le filtre d'opacité lors de la recherche dans le input
                     myFilterOpacity = document.createElement("div");
                     myFilterOpacity.id = "opaque";
@@ -658,30 +662,30 @@ window.exFunctions = (function () {
 
                 /* Assignation de l'autocompletation à l'input ------------- */
                 var myInputWithAutocomplete = new autoComplete({
-                    selector: '#'+myInputID,
+                    selector: '#' + myInputID,
                     minChars: 1,
-                    source: function(term, suggest){
+                    source: function (term, suggest) {
                         //debugger;
                         term = term.toLowerCase();
                         var choices = myDATA;
                         var suggestions = [];
-                        for (i=0;i<choices.length;i++)
+                        for (i = 0; i < choices.length; i++)
                             if (~choices[i].toLowerCase().indexOf(term)) suggestions.push(choices[i]);
                         suggest(suggestions);
                     },
-                    offsetTop:0,
-                    onSelect: function(e, term, item){
-                            //console.log('Item "'+item.getAttribute('data-langname')+' ('+item.getAttribute('data-lang')+')" selected by '+(e.type == 'keydown' ? 'pressing enter' : 'mouse click')+'.');
-                            //document.getElementById('advanced-demo').value = item.getAttribute('data-langname')+' ('+item.getAttribute('data-lang')+')';
-                            //alert("je suis dans la fonction onSelect 2");
-                            var myIdCustomer = item.innerText.split('|').pop().split(/\s+/).join('');
-                            
-                            //alert("Valeur de mon item myIdCustomer: ->"+myIdCustomer+"<-");
-                            window.exFunctions.fireOnSelectAutocompleteNavBar( myInputID, myIdCustomer);
+                    offsetTop: 0,
+                    onSelect: function (e, term, item) {
+                        //console.log('Item "'+item.getAttribute('data-langname')+' ('+item.getAttribute('data-lang')+')" selected by '+(e.type == 'keydown' ? 'pressing enter' : 'mouse click')+'.');
+                        //document.getElementById('advanced-demo').value = item.getAttribute('data-langname')+' ('+item.getAttribute('data-lang')+')';
+                        //alert("je suis dans la fonction onSelect 2");
+                        var myIdCustomer = item.innerText.split('|').pop().split(/\s+/).join('');
 
-                            //Mise à zéro arpès la sélection
-                            document.getElementById(myInputID).value="";
-                        }
+                        //alert("Valeur de mon item myIdCustomer: ->"+myIdCustomer+"<-");
+                        window.exFunctions.fireOnSelectAutocompleteNavBar(myInputID, myIdCustomer);
+
+                        //Mise à zéro arpès la sélection
+                        document.getElementById(myInputID).value = "";
+                    }
                 });
             } else
                 cosole.log('exSelectionAutocomplete : navigation bar not found !');
@@ -693,7 +697,7 @@ window.exFunctions = (function () {
 
             return ret(msgErr);
         }
-  
+
     }
 
     function exComboBox(fnt, params, db, ret) {
@@ -769,7 +773,19 @@ window.exFunctions = (function () {
 
     }
 
+    function exRemoveFile(fnt, params, db, ret) {
+
+        database.removeFile(params.record._id, params.fileName, (function (erreur) {
+            if ($.loading(!1), erreur)
+                return $.alert(locale.couldntRenameFile), ret(false);
+
+            ret(true);
+        }));
+
+    }
+
     function exDownloadFile(fnt, params, db, ret) {
+
 
         var downloadLink = database.downloadURL(params.record._id, params.fileName);
         var link = document.createElement('a');
@@ -777,8 +793,11 @@ window.exFunctions = (function () {
         link.download = params.destFileName;
         link.click();
         link.remove();
+        console.log("ExDownLoadFile(" + params.record._id + ", " + params.fileName + ")");
+
         ret(downloadLink);
-        console.log("ExDownLoadFile("+params.record._id+", "+params.fileName+")");
+
+
     }
 
     function exPrompt(fnt, params, db, ret) {
@@ -811,6 +830,7 @@ window.exFunctions = (function () {
 
         //aout des functions dans le tableau
         evalFunctor.exFunctions['exAlert'] = exAlert;
+        evalFunctor.exFunctions['exGetVersion'] = exGetVersion;
         evalFunctor.exFunctions['exPlus'] = exPlus;
         evalFunctor.exFunctions['exReverse'] = exReverse;
         evalFunctor.exFunctions['exFilesList'] = exFilesList;
@@ -818,6 +838,7 @@ window.exFunctions = (function () {
         evalFunctor.exFunctions['exComboBox'] = exComboBox;
         evalFunctor.exFunctions['exShareFile'] = exShareFile;
         evalFunctor.exFunctions['exRenameFile'] = exRenameFile;
+        evalFunctor.exFunctions['exRemoveFile'] = exRemoveFile;
         evalFunctor.exFunctions['exDownloadFile'] = exDownloadFile;
         evalFunctor.exFunctions['exPrompt'] = exPrompt;
         evalFunctor.exFunctions['exButton'] = exButton;
@@ -871,7 +892,7 @@ window.exFunctions = (function () {
         database.setSchema(database.originalSchema);
 
 
-        $.alert('Fonctions étendues prêtes à être utilisées - ' + revision);
+       // $.alert('Fonctions étendues prêtes à être utilisées - ' + revision);
     }
 
     function trouverFonctionEvent(expSource, nom) {
@@ -968,8 +989,8 @@ window.exFunctions = (function () {
             console.log('exButtonNavBar.onclick:' + fireEvalGlobal('onClickButtonNavBarNinoxActions("' + buttonNavBarId + '","' + bt.innerText + '")'));
         },
 
-        fireOnSelectAutocompleteNavBar: function (buttonNavBarId,myIdCustomer) {
-           // alert("je selectionne un element : ->"+buttonNavBarId+"<-"+"et son ID : ->"+myIdCustomer+"<-");
+        fireOnSelectAutocompleteNavBar: function (buttonNavBarId, myIdCustomer) {
+            // alert("je selectionne un element : ->"+buttonNavBarId+"<-"+"et son ID : ->"+myIdCustomer+"<-");
             bt = document.getElementById(buttonNavBarId);
             console.log('exButtonNavBar.onclick:' + fireEvalGlobal('onSelectCustomerNinoxNavBar("' + buttonNavBarId + '","' + myIdCustomer + '")'));
             //console.log('exButtonNavBar.onclick:' + fireEvalGlobal('onSelectCustomerNinoxNavBar("' + buttonNavBarId + '","' + myIdCustomer + '")'));
@@ -986,23 +1007,23 @@ window.exFunctions = (function () {
     GitHub: https://github.com/Pixabay/JavaScript-autoComplete
     License: http://www.opensource.org/licenses/mit-license.php
 */
-var autoComplete = (function(){
+var autoComplete = (function () {
     // "use strict";
-    function autoComplete(options){
+    function autoComplete(options) {
         if (!document.querySelector) return;
 
         // helpers
-        function hasClass(el, className){ return el.classList ? el.classList.contains(className) : new RegExp('\\b'+ className+'\\b').test(el.className); }
+        function hasClass(el, className) { return el.classList ? el.classList.contains(className) : new RegExp('\\b' + className + '\\b').test(el.className); }
 
-        function addEvent(el, type, handler){
-            if (el.attachEvent) el.attachEvent('on'+type, handler); else el.addEventListener(type, handler);
+        function addEvent(el, type, handler) {
+            if (el.attachEvent) el.attachEvent('on' + type, handler); else el.addEventListener(type, handler);
         }
-        function removeEvent(el, type, handler){
+        function removeEvent(el, type, handler) {
             // if (el.removeEventListener) not working in IE11
-            if (el.detachEvent) el.detachEvent('on'+type, handler); else el.removeEventListener(type, handler);
+            if (el.detachEvent) el.detachEvent('on' + type, handler); else el.removeEventListener(type, handler);
         }
-        function live(elClass, event, cb, context){
-            addEvent(context || document, event, function(e){
+        function live(elClass, event, cb, context) {
+            addEvent(context || document, event, function (e) {
                 var found, el = e.target || e.srcElement;
                 while (el && !(found = hasClass(el, elClass))) el = el.parentElement;
                 if (found) cb.call(el, e);
@@ -1018,43 +1039,43 @@ var autoComplete = (function(){
             offsetTop: 1,
             cache: 1,
             menuClass: '',
-            renderItem: function (item, search){
+            renderItem: function (item, search) {
                 // escape special characters
                 search = search.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
                 var re = new RegExp("(" + search.split(' ').join('|') + ")", "gi");
                 return '<div class="autocomplete-suggestion" data-val="' + item + '">' + item.replace(re, "<b>$1</b>") + '</div>';
             },
-            onSelect: function(e, term, item){}
+            onSelect: function (e, term, item) { }
         };
         for (var k in options) { if (options.hasOwnProperty(k)) o[k] = options[k]; }
 
         // init
         var elems = typeof o.selector == 'object' ? [o.selector] : document.querySelectorAll(o.selector);
-        for (var i=0; i<elems.length; i++) {
+        for (var i = 0; i < elems.length; i++) {
             var that = elems[i];
 
             // create suggestions container "sc"
             that.sc = document.createElement('div');
-            that.sc.className = 'autocomplete-suggestions '+o.menuClass;
+            that.sc.className = 'autocomplete-suggestions ' + o.menuClass;
 
             that.autocompleteAttr = that.getAttribute('autocomplete');
             that.setAttribute('autocomplete', 'off');
             that.cache = {};
             that.last_val = '';
 
-            that.updateSC = function(resize, next){
+            that.updateSC = function (resize, next) {
                 //debugger;
                 var rect = that.getBoundingClientRect();
                 that.sc.style.left = Math.round(rect.left + (window.pageXOffset || document.documentElement.scrollLeft) + o.offsetLeft) + 'px';
                 that.sc.style.top = Math.round(rect.bottom + (window.pageYOffset || document.documentElement.scrollTop) + o.offsetTop) + 'px';
                 that.sc.style.width = Math.round(rect.right - rect.left) + 'px'; // outerWidth
-                                
+
                 /* START------ ADD BY CISOFT FOR NINOX */
                 //that.sc.style.zIndex = "99";  
                 //that.sc.style.backgroundColor ='white';
                 //that.sc.style.fontSize = "x-large"; 
                 /* ------END */
-                       
+
                 if (!resize) {
                     that.sc.style.display = 'block';
                     if (!that.sc.maxHeight) { that.sc.maxHeight = parseInt((window.getComputedStyle ? getComputedStyle(that.sc, null) : that.sc.currentStyle).maxHeight); }
@@ -1075,18 +1096,18 @@ var autoComplete = (function(){
             document.body.appendChild(that.sc);
 
 
-            live('autocomplete-suggestion', 'mouseleave', function(e){
+            live('autocomplete-suggestion', 'mouseleave', function (e) {
                 var sel = that.sc.querySelector('.autocomplete-suggestion.selected');
-                if (sel) setTimeout(function(){ sel.className = sel.className.replace('selected', ''); }, 20);
+                if (sel) setTimeout(function () { sel.className = sel.className.replace('selected', ''); }, 20);
             }, that.sc);
 
-            live('autocomplete-suggestion', 'mouseover', function(e){
+            live('autocomplete-suggestion', 'mouseover', function (e) {
                 var sel = that.sc.querySelector('.autocomplete-suggestion.selected');
                 if (sel) sel.className = sel.className.replace('selected', '');
                 this.className += ' selected';
             }, that.sc);
 
-            live('autocomplete-suggestion', 'mousedown', function(e){
+            live('autocomplete-suggestion', 'mousedown', function (e) {
                 if (hasClass(this, 'autocomplete-suggestion')) { // else outside click
                     var v = this.getAttribute('data-val');
                     that.value = v;
@@ -1095,27 +1116,27 @@ var autoComplete = (function(){
                 }
             }, that.sc);
 
-            that.blurHandler = function(){
-                try { var over_sb = document.querySelector('.autocomplete-suggestions:hover'); } catch(e){ var over_sb = 0; }
+            that.blurHandler = function () {
+                try { var over_sb = document.querySelector('.autocomplete-suggestions:hover'); } catch (e) { var over_sb = 0; }
                 if (!over_sb) {
                     that.last_val = that.value;
                     that.sc.style.display = 'none';
-                    setTimeout(function(){ that.sc.style.display = 'none'; }, 350); // hide suggestions on fast input
-                } else if (that !== document.activeElement) setTimeout(function(){ that.focus(); }, 20);
-                
+                    setTimeout(function () { that.sc.style.display = 'none'; }, 350); // hide suggestions on fast input
+                } else if (that !== document.activeElement) setTimeout(function () { that.focus(); }, 20);
+
                 /* Start ----- ADD BY CISOFT ------*/
                 //On enleve le filtre d'opacité
-                document.getElementById('opaque').style.display='none';
+                document.getElementById('opaque').style.display = 'none';
                 /* ------ END*/
             };
             addEvent(that, 'blur', that.blurHandler);
 
-            var suggest = function(data){
+            var suggest = function (data) {
                 var val = that.value;
                 that.cache[val] = data;
                 if (data.length && val.length >= o.minChars) {
                     var s = '';
-                    for (var i=0;i<data.length;i++) s += o.renderItem(data[i], val);
+                    for (var i = 0; i < data.length; i++) s += o.renderItem(data[i], val);
                     that.sc.innerHTML = s;
                     that.updateSC(0);
                 }
@@ -1123,10 +1144,10 @@ var autoComplete = (function(){
                     that.sc.style.display = 'none';
             }
 
-            that.keydownHandler = function(e){
+            that.keydownHandler = function (e) {
                 /* Start ----- ADD BY CISOFT ------*/
                 //On affiche le filtre d'opacité
-                document.getElementById('opaque').style.display='block';
+                document.getElementById('opaque').style.display = 'block';
                 /* ------ END*/
 
                 var key = window.event ? e.keyCode : e.which;
@@ -1154,12 +1175,12 @@ var autoComplete = (function(){
                 // enter (13), tab (9)
                 else if (key == 13 || key == 9) {
                     var sel = that.sc.querySelector('.autocomplete-suggestion.selected');
-                    if (sel && that.sc.style.display != 'none') { o.onSelect(e, sel.getAttribute('data-val'), sel); setTimeout(function(){ that.sc.style.display = 'none'; }, 20); }
+                    if (sel && that.sc.style.display != 'none') { o.onSelect(e, sel.getAttribute('data-val'), sel); setTimeout(function () { that.sc.style.display = 'none'; }, 20); }
                 }
             };
             addEvent(that, 'keydown', that.keydownHandler);
 
-            that.keyupHandler = function(e){
+            that.keyupHandler = function (e) {
                 var key = window.event ? e.keyCode : e.which;
                 if (!key || (key < 35 || key > 40) && key != 13 && key != 27) {
                     var val = that.value;
@@ -1170,12 +1191,12 @@ var autoComplete = (function(){
                             if (o.cache) {
                                 if (val in that.cache) { suggest(that.cache[val]); return; }
                                 // no requests if previous suggestions were empty
-                                for (var i=1; i<val.length-o.minChars; i++) {
-                                    var part = val.slice(0, val.length-i);
+                                for (var i = 1; i < val.length - o.minChars; i++) {
+                                    var part = val.slice(0, val.length - i);
                                     if (part in that.cache && !that.cache[part].length) { suggest([]); return; }
                                 }
                             }
-                            that.timer = setTimeout(function(){ o.source(val, suggest) }, o.delay);
+                            that.timer = setTimeout(function () { o.source(val, suggest) }, o.delay);
                         }
                     } else {
                         that.last_val = val;
@@ -1185,7 +1206,7 @@ var autoComplete = (function(){
             };
             addEvent(that, 'keyup', that.keyupHandler);
 
-            that.focusHandler = function(e){
+            that.focusHandler = function (e) {
                 that.last_val = '\n';
                 that.keyupHandler(e)
             };
@@ -1193,8 +1214,8 @@ var autoComplete = (function(){
         }
 
         // public destroy method
-        this.destroy = function(){
-            for (var i=0; i<elems.length; i++) {
+        this.destroy = function () {
+            for (var i = 0; i < elems.length; i++) {
                 var that = elems[i];
                 removeEvent(window, 'resize', that.updateSC);
                 removeEvent(that, 'blur', that.blurHandler);
@@ -1213,7 +1234,7 @@ var autoComplete = (function(){
     return autoComplete;
 })();
 
-(function(){
+(function () {
     if (typeof define === 'function' && define.amd)
         define('autoComplete', function () { return autoComplete; });
     else if (typeof module !== 'undefined' && module.exports)
