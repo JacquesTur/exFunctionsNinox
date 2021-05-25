@@ -1,4 +1,5 @@
-var revision = 'rev 0.00.00.17d';
+var revision = 'rev 0.00.00.17e';
+
 
 
 window.exFunctions = (function () {
@@ -25,57 +26,11 @@ window.exFunctions = (function () {
         }
     }]);
 
-    //Début des fonctions étendues
-    function exAlert(fnt, params, db, ret) {
-        alert(params.titre + '<br><br>' + params.message);
-        ret();
-    }
-
-    function exGetVersion(fnt, params, db, ret) {
-        ret(revision);
-    }
-
-    function exPlus(fnt, params, db, ret) {
-        ret(params.A + params.B);
-    }
-
-    function exReverse(fnt, params, db, ret) {
-        var i = params.nids.slice();
-        i.reverse();
-        ret(i);
-    }
-
-    function exFilesList(fnt, params, db, ret) {
-        if (params) {
-            var i = [];
-            db.loadFiles(params, (function (t, r) {
-                if (t) console.warn(t);
-
-                if (r)
-                    for (var o = 0; o < r.length; o++)
-                        i.push(r[o].name);
-                ret(i);
-            }));
-
-        } else ret();
-    }
-
-    function exJavaScript(fnt, params, db, ret) {
-        var prm = params.args;
-
-        try {
-            //            var fn = 'function f(args){' + (params.code) + '};f(prm);';
-            var fn = Function('args', params.code);
-            //          var Result = eval(fn);
-            var Result = fn(params.args);
-
-            ret(Result);
-        } catch (err) {
-            var msgErr = err.message + ' à la ligne ' + err.line + ', colonne ' + err.column;
-
-            return ret(msgErr);
-        }
-
+    //function utilitaires
+    function getId(record) {
+        if (typeof record === 'string') return record;
+        else if (typeof record === 'object') return record._id;
+        else return null;
     }
 
     function fireEval(fn, recordId) {
@@ -151,6 +106,62 @@ window.exFunctions = (function () {
         }
         return id;
     }
+
+    //Début des fonctions étendues
+    function exAlert(fnt, params, db, ret) {
+        alert(params.titre + '<br><br>' + params.message);
+        ret();
+    }
+
+    function exGetVersion(fnt, params, db, ret) {
+        debugger;
+        ret(revision);
+    }
+
+    function exPlus(fnt, params, db, ret) {
+        ret(params.A + params.B);
+    }
+
+    function exReverse(fnt, params, db, ret) {
+        var i = params.nids.slice();
+        i.reverse();
+        ret(i);
+    }
+
+    function exFilesList(fnt, params, db, ret) {
+        if (params) {
+            var i = [];
+            db.loadFiles(params, (function (t, r) {
+                if (t) console.warn(t);
+
+                if (r)
+                    for (var o = 0; o < r.length; o++)
+                        i.push(r[o].name);
+                ret(i);
+            }));
+
+        } else ret();
+    }
+
+    function exJavaScript(fnt, params, db, ret) {
+        var prm = params.args;
+
+        try {
+            //            var fn = 'function f(args){' + (params.code) + '};f(prm);';
+            var fn = Function('args', params.code);
+            //          var Result = eval(fn);
+            var Result = fn(params.args);
+
+            ret(Result);
+        } catch (err) {
+            var msgErr = err.message + ' à la ligne ' + err.line + ', colonne ' + err.column;
+
+            return ret(msgErr);
+        }
+
+    }
+
+
 
     function exButton(fnt, params, db, ret) {
         //debugger;
@@ -546,6 +557,7 @@ window.exFunctions = (function () {
         document.getElementsByTagName("head")[0].appendChild(css);
     }
 
+
     function exSelectionAutocomplete(fnt, params, db, ret) {
         try {
             //Create input with autocomplete features
@@ -750,10 +762,12 @@ window.exFunctions = (function () {
 
     }
 
+
     function exShareFile(fnt, params, db, ret) {
 
+        debugger;
 
-        database.shareFile(params.record._id, params.fileName, (function (erreur, link) {
+        database.shareFile(getId(params.record), params.fileName, (function (erreur, link) {
 
             if (erreur) return ret(erreur);
 
@@ -764,7 +778,7 @@ window.exFunctions = (function () {
 
     function exRenameFile(fnt, params, db, ret) {
 
-        database.renameFile(params.record._id, params.oldFileName, params.newFileName, (function (erreur) {
+        database.renameFile(getId(params.record), params.oldFileName, params.newFileName, (function (erreur) {
             if ($.loading(!1), erreur)
                 return $.alert(locale.couldntRenameFile), ret(false);
 
@@ -775,7 +789,7 @@ window.exFunctions = (function () {
 
     function exRemoveFile(fnt, params, db, ret) {
 
-        database.removeFile(params.record._id, params.fileName, (function (erreur) {
+        database.removeFile(getId(params.record), params.fileName, (function (erreur) {
             if ($.loading(!1), erreur)
                 return $.alert(locale.couldntRenameFile), ret(false);
 
@@ -787,13 +801,13 @@ window.exFunctions = (function () {
     function exDownloadFile(fnt, params, db, ret) {
 
 
-        var downloadLink = database.downloadURL(params.record._id, params.fileName);
+        var downloadLink = database.downloadURL(getId(params.record), params.fileName);
         var link = document.createElement('a');
         link.href = downloadLink;
         link.download = params.destFileName;
         link.click();
         link.remove();
-        console.log("ExDownLoadFile(" + params.record._id + ", " + params.fileName + ")");
+        console.log("ExDownLoadFile(" + getId(params.record) + ", " + params.fileName + ")");
 
         ret(downloadLink);
 
@@ -892,7 +906,7 @@ window.exFunctions = (function () {
         database.setSchema(database.originalSchema);
 
 
-       // $.alert('Fonctions étendues prêtes à être utilisées - ' + revision);
+        // $.alert('Fonctions étendues prêtes à être utilisées - ' + revision);
     }
 
     function trouverFonctionEvent(expSource, nom) {
