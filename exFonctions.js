@@ -354,8 +354,8 @@ window.exFunctions = (function () {
                 var myButtonNavBarCSSStyle = ` 
                 <style> 
                     :root{
-                        --color1 : 	red;
-                        --color2 :  white
+                        --color1 : 	`+myBkColor+`;
+                        --color2 :  `+myFntColor+`;
                         }
     
                         .myButtonNavBar { 
