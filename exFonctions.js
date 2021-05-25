@@ -333,8 +333,8 @@ window.exFunctions = (function () {
             var myButtonNavBarId = params.buttonId;
             var myBkColor1 = 'red';
             var myFntColor2 = 'white';
-            if (params.BackgroundColor) then myBkColor = params.BackgroundColor; 
-            if (params.FontColor) then myFntColor = params.FntColor; 
+            if (params.BackgroundColor) myBkColor = params.BackgroundColor; 
+            if (params.FontColor) myFntColor = params.FntColor; 
             //        var myButtonNavBarId = generateUniqueId("buttonNavBarId");
 
             var button = document.getElementById(myButtonNavBarId);
