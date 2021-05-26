@@ -5,7 +5,7 @@
         else return null;
     }
 
-    function fireEval(fn, recordId) {
+    export function fireEval(fn, recordId) {
 
 
         try {
@@ -29,7 +29,7 @@
         return result;
     }
 
-    function fireEvalGlobal(fn) {
+    export function fireEvalGlobal(fn) {
 
         var result = '';
         try {
@@ -51,7 +51,7 @@
 
     }
 
-    function fireExp(exp, recordId) {
+    export function fireExp(exp, recordId) {
         try {
             if (exp.hasErrors()) return 'Erreur d\'expression : ' + exp.errorMessage();
             var result = database.loadNode(recordId, (function (e, i) {
@@ -70,7 +70,7 @@
         return result;
     }
 
-    function generateUniqueId(prefix) {
+    export function generateUniqueId(prefix) {
         var id = prefix.toString();
         var num = 0;
         while (document.getElementById(id)) {
