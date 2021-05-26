@@ -1,3 +1,5 @@
+// module "exUtils.js"    
+    
     //function utilitaires
      function getId(record) {
         if (typeof record === 'string') return record;
