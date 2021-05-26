@@ -3,8 +3,13 @@
 <div>Bonjour à tous</div>
 
     <script>
+
+    function LoadScript( Adresse ) {
         var sScriptURL ='https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/exFonctions.js';
         var oReq = new XMLHttpRequest();
         oReq.addEventListener('load', function fLoad() {eval(this.responseText + '\r\n//# sourceURL=' + sScriptURL)}); 
         oReq.open('GET', sScriptURL); oReq.send(); false;
+    }
+
+    alert('load');
         </script>
