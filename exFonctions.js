@@ -2,7 +2,7 @@
 var revision = 'rev 0.00.00.17g';
 
 //let exUtils = await import('https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/Modules/exUtils.js');
-//import 'https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/Modules/exUtils.js';
+import uxUtils from 'https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/Modules/exUtils.js';
 
 
 window.exFunctions = (function () {
@@ -695,7 +695,7 @@ window.exFunctions = (function () {
 
         debugger;
 
-        database.shareFile(getId(params.record), params.fileName, (function (erreur, link) {
+        database.shareFile(exUtils.getId(params.record), params.fileName, (function (erreur, link) {
 
             if (erreur) return ret(erreur);
 

@@ -4,7 +4,7 @@
 
     <script>
 
-    function LoadScript( Adresse ) {
+    function LoadScript( RootAdresse, ListOfModules ) {
         var sScriptURL ='https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/exFonctions.js';
         var oReq = new XMLHttpRequest();
         oReq.addEventListener('load', function fLoad() {eval(this.responseText + '\r\n//# sourceURL=' + sScriptURL)}); 
