@@ -1,7 +1,7 @@
 
         function test () {
             return 'ok';
-        },
+        };
 
 window.exUtils = (function () 
 {
