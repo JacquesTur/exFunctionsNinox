@@ -1,7 +1,7 @@
 // module "exUtils.js"    
 
 //function utilitaires
-function getId(record) {
+export function getId(record) {
     if (typeof record === 'string') return record;
     else if (typeof record === 'object') return record._id;
     else return null;
