@@ -1,10 +1,9 @@
 
-        function test () {
-            return 'ok';
-        };
+function test() {
+    return 'ok';
+};
 
-window.exUtils = (function () 
-{
+window.exUtils = (function () {
     return {
         test: function () {
             return 'ok';
