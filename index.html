@@ -7,7 +7,7 @@
     function LoadScript( Address ) {
         var sScriptURL = Address;
         var oReq = new XMLHttpRequest();
-        oReq.addEventListener('load', function fLoad() {eval(this.responseText + '\r\n//# sourceURL=' + sScriptURL)}); 
+        oReq.addEventListener('load', function fLoad() {eval(this.responseText + '\r\n//# sourceURL=' + sScriptURL);alert('script chargé : '+sScriptURL)}); 
         oReq.open('GET', sScriptURL); oReq.send(); false;
     }
 
