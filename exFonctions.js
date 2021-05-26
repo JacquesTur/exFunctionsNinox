@@ -3,7 +3,7 @@ var revision = 'rev 0.00.00.17f';
 import * as monModule from '/Modules/exUtils.js';
 
 window.exFunctions = (function () {
-    //debugger;
+    debugger;
     //Code d'initialisation des fonctions étendues
     var Ctx = new queries.JSRuntimeContext;
 
