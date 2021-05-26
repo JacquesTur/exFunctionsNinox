@@ -1,6 +1,6 @@
 var revision = 'rev 0.00.00.17f';
 
-import './Modules/exUtils.js';
+import {getId} from './Modules/exUtils.js';
 
 window.exFunctions = (function () {
     debugger;
