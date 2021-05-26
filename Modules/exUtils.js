@@ -1,8 +1,6 @@
-// module "exUtils.js"    
 
-//function utilitaires
-
-window.exUtils = (function () {
+window.exUtils = (function () 
+{
     return {
         test: function () {
             return 'ok';
