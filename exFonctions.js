@@ -1,7 +1,7 @@
 
 var revision = 'rev 0.00.00.17g';
 
-let exUtils = await import('./Modules/exUtils');
+let exUtils = await import('./Modules/exUtils.js');
 //import {getId} from './Modules/exUtils.js';
 
 window.exFunctions = (function () {
