@@ -4,12 +4,12 @@
 
     <script>
 
-    function LoadScript( RootAdresse, ListOfModules ) {
+    function LoadScript( RootAdresse ) {
         var sScriptURL ='https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/exFonctions.js';
         var oReq = new XMLHttpRequest();
         oReq.addEventListener('load', function fLoad() {eval(this.responseText + '\r\n//# sourceURL=' + sScriptURL)}); 
         oReq.open('GET', sScriptURL); oReq.send(); false;
     }
 
-    alert('load');
+    LoadScript('load');
         </script>

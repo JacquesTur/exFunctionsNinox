@@ -1,1 +1,3 @@
-let exUtils = await import('./TestModules.js');
+import { calcul } from "./TestModule";
+
+alert(calcul(1,2))

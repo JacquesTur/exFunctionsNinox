@@ -1,3 +1,4 @@
+const { test } = require('./Modules/exUtils');
 
 var revision = 'rev 0.00.00.17h';
 
@@ -39,7 +40,7 @@ window.exFunctions = (function () {
 
     function exGetVersion(fnt, params, db, ret) {
         debugger;
-        ret(revision);
+        ret(revision+test());
     }
 
     function exPlus(fnt, params, db, ret) {
@@ -695,7 +696,7 @@ window.exFunctions = (function () {
 
         debugger;
 
-        database.shareFile(exUtils.getId(params.record), params.fileName, (function (erreur, link) {
+        database.shareFile(getId(params.record), params.fileName, (function (erreur, link) {
 
             if (erreur) return ret(erreur);
 
