@@ -2,7 +2,7 @@
 var revision = 'rev 0.00.00.17g';
 
 //let exUtils = await import('https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/Modules/exUtils.js');
-import {getId} from 'https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/Modules/exUtils.js';
+import 'https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/Modules/exUtils.js';
 
 window.exFunctions = (function () {
     debugger;
