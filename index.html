@@ -4,12 +4,14 @@
 
     <script>
 
-    function LoadScript( RootAdresse ) {
-        var sScriptURL ='https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/exFonctions.js';
+    function LoadScript( Address ) {
+        var sScriptURL = Address;
         var oReq = new XMLHttpRequest();
         oReq.addEventListener('load', function fLoad() {eval(this.responseText + '\r\n//# sourceURL=' + sScriptURL)}); 
         oReq.open('GET', sScriptURL); oReq.send(); false;
     }
 
-    LoadScript('load');
+    var rootAddress = 'https://raw.githubusercontent.com/JacquesTur';
+    LoadScript(rootAddress+'/exFunctionsNinox/master/modules/exUtils.js');
+    LoadScript(rootAddress+'/exFunctionsNinox/master/exFonctions.js');
         </script>

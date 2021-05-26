@@ -1,12 +1,12 @@
-const { test } = require('./Modules/exUtils');
 
 var revision = 'rev 0.00.00.17h';
 
-import ('https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/Modules/exUtils.js');
+//import ('https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/Modules/exUtils.js');
 //let exUtils = await import('https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/Modules/exUtils.js');
 
 
-window.exFunctions = (function () {
+window.exFunctions = (function () 
+{
     debugger;
     //Code d'initialisation des fonctions étendues
     var Ctx = new queries.JSRuntimeContext;
@@ -40,7 +40,7 @@ window.exFunctions = (function () {
 
     function exGetVersion(fnt, params, db, ret) {
         debugger;
-        ret(revision+test());
+        ret(revision+exUtils.test());
     }
 
     function exPlus(fnt, params, db, ret) {
