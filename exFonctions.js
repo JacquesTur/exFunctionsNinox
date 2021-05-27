@@ -1,5 +1,5 @@
 
-var revision = 'rev 0.00.00.18c';
+var revision = 'rev 0.00.00.18d';
 
 
 //import ('https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/Modules/exUtils.js');
@@ -10,9 +10,9 @@ var revision = 'rev 0.00.00.18c';
 //Ce module est chargé à l'aide du même code que celui ci-dessous. 
 //Il est appelé comme une fonction avec comme paramètre rootAddress qui indique l'adresse
 //de base du serveur pour trouver les autres modules.
-debugger;
+
 window.exModules = (function(){
-    debugger;
+ 
     console.log('exModule.constructor');
     return {
         loadModule: function (Address, Script ) {
@@ -40,8 +40,7 @@ window.exModules = (function(){
     }
 })();
 
-window.exModules();
-
+debugger;
 exModules.loadModule(rootAddress,'Module/exUtils.js');
 
 window.exFunctions = (function () 
