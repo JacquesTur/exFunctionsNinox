@@ -40,7 +40,11 @@ window.exModules = (function(){
     }
 })();
 
+<<<<<<< HEAD
 debugger;
+=======
+
+>>>>>>> 433e2e6dbd38ba8f07efc8a9eebb34cdfe3253ad
 exModules.loadModule(rootAddress,'Module/exUtils.js');
 
 window.exFunctions = (function () 
