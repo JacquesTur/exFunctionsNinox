@@ -34,7 +34,7 @@ window.exModules = (function(){
     }
 });
 
-exModules.loadModule(rootAdresse,'Module/exUtils.js');
+exModules.loadModule(rootAddress,'Module/exUtils.js');
 
 window.exFunctions = (function () 
 {
