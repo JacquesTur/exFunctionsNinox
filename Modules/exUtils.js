@@ -1,4 +1,6 @@
 
+alert('ready');
+
 function test() {
     return 'ok';
 };
