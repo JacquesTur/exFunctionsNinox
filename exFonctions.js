@@ -1,5 +1,5 @@
 
-var revision = 'rev 0.00.00.18e';
+var revision = 'rev 0.00.00.18f';
 
 
 //import ('https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/Modules/exUtils.js');
@@ -41,7 +41,7 @@ window.exModules = (function(){
 })();
 
 debugger;
-exModules.loadModule(rootAddress,'Module/exUtils.js');
+exModules.loadModule(rootAddress,'Modules/exUtils.js');
 
 window.exFunctions = (function () 
 {
