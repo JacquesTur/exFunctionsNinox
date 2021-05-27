@@ -37,6 +37,7 @@ window.exModules = (function(){
     }
 });
 
+
 exModules.loadModule(rootAddress,'Module/exUtils.js');
 
 window.exFunctions = (function () 
@@ -805,7 +806,6 @@ window.exFunctions = (function ()
     }
 
 })();
-
 
 exModules.loadModule(rootAddress,'Module/exFnJt.js');
 
