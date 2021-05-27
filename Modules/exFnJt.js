@@ -58,7 +58,7 @@ window.exFnJt = (function () {
             var lst = params.list;
             var strLines = '';
             var i;
-            var id = generateUniqueId("comboBox");
+            var id = exUtils.generateUniqueId("comboBox");
 
             var value, label;
 

@@ -85,7 +85,7 @@ window.exFunctions = (function ()
             var myComportementColor = params.ComportementColor;
             var myComportementColorHover = params.ComportementColorHover;
 
-            var myId = generateUniqueId("buttonId");
+            var myId = exUtils.generateUniqueId("buttonId");
 
             var myBadgeVisible = myBadge ? `<span class="badge">${myBadgeValue}</span>` : ``;
 
