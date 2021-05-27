@@ -1,6 +1,5 @@
 window.exFnJt = (function () {
 
-    
     function exAlert(fnt, params, db, ret) {
         alert(params.titre + '<br><br>' + params.message);
         ret();
