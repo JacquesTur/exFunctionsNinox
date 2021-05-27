@@ -38,7 +38,7 @@ window.exModules = (function(){
 });
 
 
-exModules.loadModule(rootAddress,'Module/exUtils.js');
+window.exModules.loadModule(rootAddress,'Module/exUtils.js');
 
 window.exFunctions = (function () 
 {
@@ -807,7 +807,7 @@ window.exFunctions = (function ()
 
 })();
 
-exModules.loadModule(rootAddress,'Module/exFnJt.js');
+window.exModules.loadModule(rootAddress,'Module/exFnJt.js');
 
 /*
     JavaScript autoComplete v1.0.4
