@@ -1,5 +1,10 @@
 window.exFnJt = (function () {
     
+    function exAlert(fnt, params, db, ret) {
+        alert(params.titre + '<br><br>' + params.message);
+        ret();
+    };
+    
     exFunctions.addExFunction()
     exFunctions.addExFunction('exAlert', exAlert);
     exFunctions.addExFunction('exGetVersion', exGetVersion);
@@ -14,10 +19,7 @@ window.exFnJt = (function () {
     exFunctions.addExFunction('exDownloadFile', exDownloadFile);
     exFunctions.addExFunction('exPrompt', exPrompt);
     return {
-    exAlert: function (fnt, params, db, ret) {
-            alert(params.titre + '<br><br>' + params.message);
-            ret();
-        },
+
 
     exGetVersion: function (fnt, params, db, ret) {
             debugger;
