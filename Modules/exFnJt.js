@@ -104,7 +104,7 @@ window.exFnJt = (function () {
 
     function exShareFile(fnt, params, db, ret) {
 
-        debugger;
+        //debugger;
 
         database.shareFile(exUtils.getId(params.record), params.fileName, (function (erreur, link) {
 
@@ -159,7 +159,7 @@ window.exFnJt = (function () {
         ret(result);
     };
 
-    debugger;
+    //debugger;
     exFunctions.addExFunction()
     exFunctions.addExFunction('exAlert', exAlert);
     exFunctions.addExFunction('exGetVersion', exGetVersion);
