@@ -40,7 +40,6 @@ window.exModules = (function(){
     }
 })();
 
-window.exModules();
 
 exModules.loadModule(rootAddress,'Module/exUtils.js');
 
