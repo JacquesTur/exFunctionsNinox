@@ -806,6 +806,9 @@ window.exFunctions = (function ()
 
 })();
 
+
+exModules.loadModule(rootAddress,'Module/exFnJt.js');
+
 /*
     JavaScript autoComplete v1.0.4
     Copyright (c) 2014 Simon Steinberger / Pixabay
