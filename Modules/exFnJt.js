@@ -5,8 +5,6 @@ window.exFnJt = (function () {
         ret();
     };
 
-
-
     exGetVersion(fnt, params, db, ret) {
 
         ret(revision + exUtils.test());
@@ -150,8 +148,6 @@ window.exFnJt = (function () {
         console.log("ExDownLoadFile(" + getId(params.record) + ", " + params.fileName + ")");
 
         ret(downloadLink);
-
-
     };
 
     function exPrompt(fnt, params, db, ret) {
