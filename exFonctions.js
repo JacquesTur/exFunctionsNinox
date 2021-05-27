@@ -7,7 +7,9 @@ var revision = 'rev 0.00.00.17j';
 
 //var rootAddress = 'https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/';
 
-alert('rootAddress : ' + rootAddress);
+//Ce module est chargé à l'aide du même code que celui ci-dessous. 
+//Il est appelé comme une fonction avec comme paramètre rootAddress qui indique l'adresse
+//de base du serveur pour trouver les autres modules.
 window.exModules = (function(){
     return {
         loadModule: function (Address, Script ) {
@@ -17,17 +19,18 @@ window.exModules = (function(){
             fileModule.addEventListener('load', function fLoad() {
     
                 try {
-                    debugger;
-                    console.log('Chargement : ' + adrScript)
-                    //eval(this.responseText + '\r\n//# sourceURL=' + adrScript); 
+                    console.log('Chargement : ' + adrScript)   
                     var fn = Function(rootAdresse, this.responseText );
-                    fn(null);
+                    fn(rootAdresse);
                     console.log('script chargé : ' + adrScript)
                 } catch (err) {
                     var msgErr = err.message + ' à la ligne ' + err.line + ', colonne ' + err.column;
                     console.log(' erreur au chargement de ' + Script + ' : ' +err );
                 }
             });
+            // Avec le paramètre false dans la fonction open, le send sera exécuté en synchrone,
+            // s'est à dire qu'il n'en sortira qu'apèrs avoir reçu le message retour du serveur et 
+            // écecuté l'évanement 'load'.
             fileModule.open('GET', adrScript, false); 
             fileModule.send(); 
         }
@@ -63,60 +66,7 @@ window.exFunctions = (function ()
 
 
     //Début des fonctions étendues
-    function exAlert(fnt, params, db, ret) {
-        alert(params.titre + '<br><br>' + params.message);
-        ret();
-    }
-
-    function exGetVersion(fnt, params, db, ret) {
-        debugger;
-        ret(revision+exUtils.test());
-    }
-
-    function exPlus(fnt, params, db, ret) {
-        ret(params.A + params.B);
-    }
-
-    function exReverse(fnt, params, db, ret) {
-        var i = params.nids.slice();
-        i.reverse();
-        ret(i);
-    }
-
-    function exFilesList(fnt, params, db, ret) {
-        if (params) {
-            var i = [];
-            db.loadFiles(params, (function (t, r) {
-                if (t) console.warn(t);
-
-                if (r)
-                    for (var o = 0; o < r.length; o++)
-                        i.push(r[o].name);
-                ret(i);
-            }));
-
-        } else ret();
-    }
-
-    function exJavaScript(fnt, params, db, ret) {
-        var prm = params.args;
-
-        try {
-            //            var fn = 'function f(args){' + (params.code) + '};f(prm);';
-            var fn = Function('args', params.code);
-            //          var Result = eval(fn);
-            var Result = fn(params.args);
-
-            ret(Result);
-        } catch (err) {
-            var msgErr = err.message + ' à la ligne ' + err.line + ', colonne ' + err.column;
-
-            return ret(msgErr);
-        }
-
-    }
-
-
+   
 
     function exButton(fnt, params, db, ret) {
         //debugger;
@@ -671,117 +621,7 @@ window.exFunctions = (function ()
 
     }
 
-    function exComboBox(fnt, params, db, ret) {
-        //debugger;
-        try {
-            //
-            var lst = params.list;
-            var strLines = '';
-            var i;
-            var id = generateUniqueId("comboBox");
-
-            var value, label;
-
-            for (i in lst) {
-                if (typeof lst[i] == 'string') {
-                    value = lst[i];
-                    label = lst[i];
-                } else {
-                    value = lst[i].value;
-                    label = lst[i].label;
-                }
-                strLines += '<option id="' + value + '"';
-
-                if (value == params.selected) {
-                    strLines += ' selected';
-                }
-                strLines += '>' + label + '</option>';
-            }
-
-            var codeHTML = '<select class=\'stringeditor\' style=\'height: 100%; width:100%; overflow:visible; padding:0px; background:none; padding-left:5px\' id=' + id +
-                '  onchange=\'window.exFunctions.fireSelectComboBox( "' + id + '","' + params.record._id + '")\'>' +
-                strLines +
-                ' </select>' +
-                '<script>' +
-                'var x = document.getElementById("' + id + '"); ' +
-                'var p = x.parentNode; ' +
-
-                'p.style.overflow = "visible"; p.style.padding = "0px"; p.style.margin = "0px"; p.id = "coucou";' +
-
-                '<\/script>';
-
-            console.log(codeHTML);
-            ret(codeHTML);
-        } catch (err) {
-            var msgErr = err.message + ' à la ligne ' + err.line + ', colonne ' + err.column;
-
-            return ret(msgErr);
-        }
-
-
-    }
-
-
-    function exShareFile(fnt, params, db, ret) {
-
-        debugger;
-
-        database.shareFile(getId(params.record), params.fileName, (function (erreur, link) {
-
-            if (erreur) return ret(erreur);
-
-            ret(link.url);
-
-        }));
-    }
-
-    function exRenameFile(fnt, params, db, ret) {
-
-        database.renameFile(getId(params.record), params.oldFileName, params.newFileName, (function (erreur) {
-            if ($.loading(!1), erreur)
-                return $.alert(locale.couldntRenameFile), ret(false);
-
-            ret(true);
-        }));
-
-    }
-
-    function exRemoveFile(fnt, params, db, ret) {
-
-        database.removeFile(getId(params.record), params.fileName, (function (erreur) {
-            if ($.loading(!1), erreur)
-                return $.alert(locale.couldntRenameFile), ret(false);
-
-            ret(true);
-        }));
-
-    }
-
-    function exDownloadFile(fnt, params, db, ret) {
-
-
-        var downloadLink = database.downloadURL(getId(params.record), params.fileName);
-        var link = document.createElement('a');
-        link.href = downloadLink;
-        link.download = params.destFileName;
-        link.click();
-        link.remove();
-        console.log("ExDownLoadFile(" + getId(params.record) + ", " + params.fileName + ")");
-
-        ret(downloadLink);
-
-
-    }
-
-    function exPrompt(fnt, params, db, ret) {
-
-
-        var result = {};
-        result.value = prompt(params.caption, params.defaultValue);
-        result.ok = (!!result.value);
-
-        ret(result);
-    }
+ 
     //Fin des fonctions étendues
 
     //Initialise les mise en place des functions étendues au travers de la function eval de Ninox
@@ -802,18 +642,7 @@ window.exFunctions = (function ()
         evalFunctor.exFunctions = {};
 
         //aout des functions dans le tableau
-        evalFunctor.exFunctions['exAlert'] = exAlert;
-        evalFunctor.exFunctions['exGetVersion'] = exGetVersion;
-        evalFunctor.exFunctions['exPlus'] = exPlus;
-        evalFunctor.exFunctions['exReverse'] = exReverse;
-        evalFunctor.exFunctions['exFilesList'] = exFilesList;
-        evalFunctor.exFunctions['exJavaScript'] = exJavaScript;
-        evalFunctor.exFunctions['exComboBox'] = exComboBox;
-        evalFunctor.exFunctions['exShareFile'] = exShareFile;
-        evalFunctor.exFunctions['exRenameFile'] = exRenameFile;
-        evalFunctor.exFunctions['exRemoveFile'] = exRemoveFile;
-        evalFunctor.exFunctions['exDownloadFile'] = exDownloadFile;
-        evalFunctor.exFunctions['exPrompt'] = exPrompt;
+
         evalFunctor.exFunctions['exButton'] = exButton;
         evalFunctor.exFunctions['exButtonNavBar'] = exButtonNavBar;
         evalFunctor.exFunctions['exButtonNavBarTravaux'] = exButtonNavBarTravaux;
@@ -885,6 +714,9 @@ window.exFunctions = (function ()
     }
 
     return {
+        addExFunction(functionName, fnt) {
+            evalFunctor.exFunctions[functionName] = fnt;
+        },
         fireSelectComboBox: function (comboBoxId, recordId) {
 
             var cb = document.getElementById(comboBoxId);
