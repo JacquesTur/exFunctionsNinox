@@ -2,10 +2,6 @@
 alert('ready');
 
 
-function test() {
-    return 'ok';
-};
-
 window.exUtils = (function () {
     return {
         test: function () {

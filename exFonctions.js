@@ -41,7 +41,7 @@ window.exFunctions = (function ()
 
     function exGetVersion(fnt, params, db, ret) {
         debugger;
-        ret(revision+test());
+        ret(revision+exUtils.test());
     }
 
     function exPlus(fnt, params, db, ret) {

@@ -2,16 +2,28 @@
 
 <div>Bonjour à tous</div>
 
-    <script>
+<script>
 
-    function LoadScript( Address ) {
-        var sScriptURL = Address;
+    function LoadScript(Address, Script ) {
+
+		var adrScript = Address + '/' + Script
         var oReq = new XMLHttpRequest();
-        oReq.addEventListener('load', function fLoad() {eval(this.responseText + '\r\n//# sourceURL=' + sScriptURL);alert('script chargé : '+sScriptURL)}); 
-        oReq.open('GET', sScriptURL); oReq.send(); false;
-    }
+        oReq.addEventListener('load', function fLoad() {
 
-    var rootAddress = 'https://raw.githubusercontent.com/JacquesTur';
-    LoadScript(rootAddress+'/exFunctionsNinox/master/modules/exUtils.js');
-    LoadScript(rootAddress+'/exFunctionsNinox/master/exFonctions.js');
-        </script>
+            try {
+                debugger;
+                console.log('Chargement : ' + adrScript)
+                eval(this.responseText + '\r\n//# sourceURL=' + adrScript); 
+                console.log('script chargé : ' + adrScript)
+            } catch (err) {
+                var msgErr = err.message + ' à la ligne ' + err.line + ', colonne ' + err.column;
+				console.log(' erreur au chargement de ' + Script + ' : ' +err );
+            }
+        });
+        oReq.open('GET', adrScript); oReq.send(); false;
+    }
+    debugger;
+    var rootAddress = 'https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/';
+    LoadScript(rootAddress, 'Modules/exUtils.js');
+    LoadScript(rootAddress, 'exFonctions.js');
+</script>
