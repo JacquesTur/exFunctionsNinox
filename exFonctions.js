@@ -741,7 +741,7 @@ window.exFunctions = (function ()
                 }
                 if (fnOnSelect) {
                     fnOnSelect += '; \n onSelect("' + escape(option.innerText) + '","' + escape(option.id) + '");';
-                    var err = fireEval(fnOnSelect, recordId);
+                    var err = exUtils.fireEval(fnOnSelect, recordId);
                     if (err) alert(n.field.caption + '.onSelect : ' + err + '\n' + fnOnSelect);
 
                 }
@@ -772,7 +772,7 @@ window.exFunctions = (function ()
                 }
                 if (fnOnClick) {
                     fnOnClick += '; \n onClick();';
-                    var err = fireEval(fnOnClick, recordId);
+                    var err = exUtils.fireEval(fnOnClick, recordId);
                     if (err) alert(n.field.caption + '.onClick : ' + err + '\n' + fnOnClick);
 
                 }
@@ -784,24 +784,24 @@ window.exFunctions = (function ()
 
         fireOnClickButtonNavBar: function (buttonNavBarId) {
             bt = document.getElementById(buttonNavBarId);
-            console.log('exButtonNavBar.onclick:' + fireEvalGlobal('onClickButtonNavBarNinox("' + buttonNavBarId + '","' + bt.innerText + '")'));
+            console.log('exButtonNavBar.onclick:' + exUtils.fireEvalGlobal('onClickButtonNavBarNinox("' + buttonNavBarId + '","' + bt.innerText + '")'));
         },
 
         fireOnClickButtonNavBarTravaux: function (buttonNavBarId) {
             bt = document.getElementById(buttonNavBarId);
-            console.log('exButtonNavBar.onclick:' + fireEvalGlobal('onClickButtonNavBarNinoxTravaux("' + buttonNavBarId + '","' + bt.innerText + '")'));
+            console.log('exButtonNavBar.onclick:' + exUtils.fireEvalGlobal('onClickButtonNavBarNinoxTravaux("' + buttonNavBarId + '","' + bt.innerText + '")'));
         },
 
         fireOnClickButtonNavBarActions: function (buttonNavBarId) {
             bt = document.getElementById(buttonNavBarId);
-            console.log('exButtonNavBar.onclick:' + fireEvalGlobal('onClickButtonNavBarNinoxActions("' + buttonNavBarId + '","' + bt.innerText + '")'));
+            console.log('exButtonNavBar.onclick:' + exUtils.fireEvalGlobal('onClickButtonNavBarNinoxActions("' + buttonNavBarId + '","' + bt.innerText + '")'));
         },
 
         fireOnSelectAutocompleteNavBar: function (buttonNavBarId, myIdCustomer) {
             // alert("je selectionne un element : ->"+buttonNavBarId+"<-"+"et son ID : ->"+myIdCustomer+"<-");
             bt = document.getElementById(buttonNavBarId);
-            console.log('exButtonNavBar.onclick:' + fireEvalGlobal('onSelectCustomerNinoxNavBar("' + buttonNavBarId + '","' + myIdCustomer + '")'));
-            //console.log('exButtonNavBar.onclick:' + fireEvalGlobal('onSelectCustomerNinoxNavBar("' + buttonNavBarId + '","' + myIdCustomer + '")'));
+            console.log('exButtonNavBar.onclick:' + exUtils.fireEvalGlobal('onSelectCustomerNinoxNavBar("' + buttonNavBarId + '","' + myIdCustomer + '")'));
+            //console.log('exButtonNavBar.onclick:' + exUtils.fireEvalGlobal('onSelectCustomerNinoxNavBar("' + buttonNavBarId + '","' + myIdCustomer + '")'));
 
         }
 
