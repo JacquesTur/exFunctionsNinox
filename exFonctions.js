@@ -810,7 +810,7 @@ window.exFunctions = (function ()
 
 })();
 
-exModules.loadModule(rootAddress,'Module/exFnJt.js');
+exModules.loadModule(rootAddress,'Modules/exFnJt.js');
 
 /*
     JavaScript autoComplete v1.0.4
