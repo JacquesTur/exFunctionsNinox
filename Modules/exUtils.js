@@ -1,7 +1,6 @@
 
 alert('ready');
 
-
 window.exUtils = (function () {
     return {
         test: function () {

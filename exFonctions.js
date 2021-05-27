@@ -32,7 +32,6 @@ window.exFunctions = (function ()
     }]);
 
 
-
     //Début des fonctions étendues
     function exAlert(fnt, params, db, ret) {
         alert(params.titre + '<br><br>' + params.message);
