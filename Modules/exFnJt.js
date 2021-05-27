@@ -106,7 +106,7 @@ window.exFnJt = (function () {
 
         debugger;
 
-        database.shareFile(getId(params.record), params.fileName, (function (erreur, link) {
+        database.shareFile(exUtils.getId(params.record), params.fileName, (function (erreur, link) {
 
             if (erreur) return ret(erreur);
 
@@ -117,7 +117,7 @@ window.exFnJt = (function () {
 
     function exRenameFile(fnt, params, db, ret) {
 
-        database.renameFile(getId(params.record), params.oldFileName, params.newFileName, (function (erreur) {
+        database.renameFile(exUtils.getId(params.record), params.oldFileName, params.newFileName, (function (erreur) {
             if ($.loading(!1), erreur)
                 return $.alert(locale.couldntRenameFile), ret(false);
 
@@ -128,7 +128,7 @@ window.exFnJt = (function () {
 
     function exRemoveFile(fnt, params, db, ret) {
 
-        database.removeFile(getId(params.record), params.fileName, (function (erreur) {
+        database.removeFile(exUtils.getId(params.record), params.fileName, (function (erreur) {
             if ($.loading(!1), erreur)
                 return $.alert(locale.couldntRenameFile), ret(false);
 
@@ -139,13 +139,13 @@ window.exFnJt = (function () {
 
     function exDownloadFile(fnt, params, db, ret) {
 
-        var downloadLink = database.downloadURL(getId(params.record), params.fileName);
+        var downloadLink = database.downloadURL(exUtils.getId(params.record), params.fileName);
         var link = document.createElement('a');
         link.href = downloadLink;
         link.download = params.destFileName;
         link.click();
         link.remove();
-        console.log("ExDownLoadFile(" + getId(params.record) + ", " + params.fileName + ")");
+        console.log("ExDownLoadFile(" + exUtils.getId(params.record) + ", " + params.fileName + ")");
 
         ret(downloadLink);
     };
