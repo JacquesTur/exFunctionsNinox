@@ -10,7 +10,10 @@ var revision = 'rev 0.00.00.18a';
 //Ce module est chargé à l'aide du même code que celui ci-dessous. 
 //Il est appelé comme une fonction avec comme paramètre rootAddress qui indique l'adresse
 //de base du serveur pour trouver les autres modules.
+debugger;
 window.exModules = (function(){
+    debugger;
+    console.log('exModule.constructor');
     return {
         loadModule: function (Address, Script ) {
 
@@ -37,6 +40,7 @@ window.exModules = (function(){
     }
 });
 
+window.exModules();
 
 window.exModules.loadModule(rootAddress,'Module/exUtils.js');
 
