@@ -1,7 +1,6 @@
 
-alert('ready');
-
 window.exUtils = (function () {
+    console.log('exutils.constructor')
     return {
         test: function () {
             return 'ok';

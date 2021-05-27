@@ -4,7 +4,37 @@ var revision = 'rev 0.00.00.17j';
 
 //import ('https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/Modules/exUtils.js');
 //let exUtils = await import('https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/Modules/exUtils.js');
-alert('ready');
+
+//var rootAddress = 'https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/';
+
+alert('rootAddress : ' + rootAddress);
+window.exModules = (function(){
+    return {
+        loadModule: function (Address, Script ) {
+
+            var adrScript = Address + '/' + Script
+            var fileModule = new XMLHttpRequest();
+            fileModule.addEventListener('load', function fLoad() {
+    
+                try {
+                    debugger;
+                    console.log('Chargement : ' + adrScript)
+                    //eval(this.responseText + '\r\n//# sourceURL=' + adrScript); 
+                    var fn = Function(rootAdresse, this.responseText );
+                    fn(null);
+                    console.log('script chargé : ' + adrScript)
+                } catch (err) {
+                    var msgErr = err.message + ' à la ligne ' + err.line + ', colonne ' + err.column;
+                    console.log(' erreur au chargement de ' + Script + ' : ' +err );
+                }
+            });
+            fileModule.open('GET', adrScript, false); 
+            fileModule.send(); 
+        }
+    }
+});
+
+exModules.loadModule(rootAdresse,'Module/exUtils.js');
 
 window.exFunctions = (function () 
 {
