@@ -7,7 +7,7 @@ window.exFnJt = (function () {
 
     function exGetVersion(fnt, params, db, ret) {
 
-        ret(revision + exUtils.test());
+        ret(exRevision + exUtils.test());
     };
 
     function exPlus(fnt, params, db, ret) {
