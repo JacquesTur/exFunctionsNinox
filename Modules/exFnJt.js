@@ -177,4 +177,4 @@ window.exFnJt = (function () {
             ret(result);
         },
     }
-})
+})();

@@ -14,8 +14,8 @@ debugger;
 window.exModules = (function(){
     debugger;
     console.log('exModule.constructor');
-  
-        this.loadModule = function (Address, Script ) {
+    return {
+        loadModule: function (Address, Script ) {
 
             var adrScript = Address + '/' + Script
             var fileModule = new XMLHttpRequest();
@@ -37,12 +37,12 @@ window.exModules = (function(){
             fileModule.open('GET', adrScript, false); 
             fileModule.send(); 
         }
-    
-});
+    }
+})();
 
 window.exModules();
 
-window.exModules.loadModule(rootAddress,'Module/exUtils.js');
+exModules.loadModule(rootAddress,'Module/exUtils.js');
 
 window.exFunctions = (function () 
 {
@@ -811,7 +811,7 @@ window.exFunctions = (function ()
 
 })();
 
-window.exModules.loadModule(rootAddress,'Module/exFnJt.js');
+exModules.loadModule(rootAddress,'Module/exFnJt.js');
 
 /*
     JavaScript autoComplete v1.0.4
