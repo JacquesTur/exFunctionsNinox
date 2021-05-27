@@ -14,8 +14,8 @@ debugger;
 window.exModules = (function(){
     debugger;
     console.log('exModule.constructor');
-    return {
-        loadModule: function (Address, Script ) {
+  
+        this.loadModule = function (Address, Script ) {
 
             var adrScript = Address + '/' + Script
             var fileModule = new XMLHttpRequest();
@@ -37,7 +37,7 @@ window.exModules = (function(){
             fileModule.open('GET', adrScript, false); 
             fileModule.send(); 
         }
-    }
+    
 });
 
 window.exModules();
