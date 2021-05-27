@@ -1,5 +1,5 @@
 
-var revision = 'rev 0.00.00.17j';
+var revision = 'rev 0.00.00.18';
 
 
 //import ('https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/Modules/exUtils.js');
