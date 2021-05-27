@@ -39,12 +39,12 @@ window.exModules = (function(){
     }
 })();
 
-debugger;
+
 exModules.loadModule(rootAddress,'Modules/exUtils.js');
 
 window.exFunctions = (function () 
 {
-    debugger;
+
     //Code d'initialisation des fonctions étendues
     var Ctx = new queries.JSRuntimeContext;
 

@@ -1,10 +1,10 @@
 window.exFnJt = (function () {
-    
+    debugger;   
     function exAlert(fnt, params, db, ret) {
         alert(params.titre + '<br><br>' + params.message);
         ret();
     };
-    
+
     exFunctions.addExFunction()
     exFunctions.addExFunction('exAlert', exAlert);
     exFunctions.addExFunction('exGetVersion', exGetVersion);
@@ -22,7 +22,7 @@ window.exFnJt = (function () {
 
 
     exGetVersion: function (fnt, params, db, ret) {
-            debugger;
+ 
             ret(revision + exUtils.test());
         },
 
