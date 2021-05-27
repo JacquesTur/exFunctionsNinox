@@ -5,7 +5,7 @@ window.exFnJt = (function () {
         ret();
     };
 
-    exGetVersion(fnt, params, db, ret) {
+    function exGetVersion(fnt, params, db, ret) {
 
         ret(revision + exUtils.test());
     };
@@ -173,5 +173,5 @@ window.exFnJt = (function () {
     exFunctions.addExFunction('exRemoveFile', exRemoveFile);
     exFunctions.addExFunction('exDownloadFile', exDownloadFile);
     exFunctions.addExFunction('exPrompt', exPrompt);
-
+    return {}
 })();
