@@ -5,9 +5,14 @@ window.exFnJt = (function () {
         ret();
     };
 
+    function exDebugger(fnt, params, db, ret) {
+
+        debugger;
+    };
+
     function exGetVersion(fnt, params, db, ret) {
 
-        ret(exRevision + exUtils.test());
+        ret(exRevision);
     };
 
     function exPlus(fnt, params, db, ret) {
@@ -162,6 +167,7 @@ window.exFnJt = (function () {
     //debugger;
     exFunctions.addExFunction()
     exFunctions.addExFunction('exAlert', exAlert);
+    exFunctions.addExFunction('exDebugger', exDebugger);
     exFunctions.addExFunction('exGetVersion', exGetVersion);
     exFunctions.addExFunction('exPlus', exPlus);
     exFunctions.addExFunction('exReverse', exReverse);
