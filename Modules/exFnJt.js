@@ -166,6 +166,7 @@ window.exFnJt = (function () {
 
     function exGetComments(fnt, params, db, ret) {
 
+        debugger;
         database.loadComments(args.id, (function (t, i) {
             var r = [];
 
