@@ -164,6 +164,24 @@ window.exFnJt = (function () {
         ret(result);
     };
 
+    function exGetComments(fnt, params, db, ret) {
+
+        database.loadComments(args.id, (function (t, i) {
+            var r = [];
+
+            for (c in i) {
+                var o = {
+                    comment: i[c][2],
+                    id: i[c][1],
+                    date: new Date(i[c][0])
+                };
+                r.push(o);
+            };
+            debugger;
+            ret(r);
+        })
+    }
+
     //debugger;
     exFunctions.addExFunction()
     exFunctions.addExFunction('exAlert', exAlert);
