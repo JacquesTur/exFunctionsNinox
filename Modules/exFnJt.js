@@ -179,7 +179,7 @@ window.exFnJt = (function () {
             };
             debugger;
             ret(r);
-        })
+        }));
     }
 
     //debugger;
@@ -197,5 +197,6 @@ window.exFnJt = (function () {
     exFunctions.addExFunction('exRemoveFile', exRemoveFile);
     exFunctions.addExFunction('exDownloadFile', exDownloadFile);
     exFunctions.addExFunction('exPrompt', exPrompt);
+    exFunctions.addExFunction('exGetComments', exGetComments);
     return {}
 })();
