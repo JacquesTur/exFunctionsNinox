@@ -4,9 +4,9 @@
 
 <script>
 
-    function exLoadScript(Address, Script ) {
+    function exLoadScript(Address, Script) {
 
-		var adrScript = Address + '/' + Script
+        var adrScript = Address + '/' + Script
         var oReq = new XMLHttpRequest();
         oReq.addEventListener('load', function fLoad() {
 
@@ -14,12 +14,12 @@
                 debugger;
                 console.log('Chargement : ' + adrScript)
                 //eval(this.responseText + '\r\n//# sourceURL=' + adrScript); 
-                var fn = Function(rootAdresse, this.responseText );
+                var fn = Function(rootAdresse, this.responseText);
                 fn(null);
                 console.log('script chargé : ' + adrScript)
             } catch (err) {
                 var msgErr = err.message + ' à la ligne ' + err.line + ', colonne ' + err.column;
-				console.log(' erreur au chargement de ' + Script + ' : ' +err );
+                console.log(' erreur au chargement de ' + Script + ' : ' + err);
             }
         });
         oReq.open('GET', adrScript); oReq.send(); false;
@@ -29,3 +29,4 @@
     LoadScript(rootAddress, 'Modules/exUtils.js');
     LoadScript(rootAddress, 'exFonctions.js');
 </script>
+
