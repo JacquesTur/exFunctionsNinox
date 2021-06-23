@@ -694,8 +694,12 @@ window.exFunctions = (function ()
         Ctx.F[evalFunctor.functorId] = evalFunctor.fn;
 
         // IMPORTANT : force la mise à jour de Ninox pour prendre en compte les fonctions étendues
- //       database.setSchema(database.originalSchema);
+ /*       
+ window.database.setSchema(window.database.originalSchema);
+ 
 
+
+ */
 
         // $.alert('Fonctions étendues prêtes à être utilisées - ' + revision);
     }
