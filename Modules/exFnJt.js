@@ -199,19 +199,19 @@ window.exFnJt = (function () {
 
     // récupération de la table (type) et du champ (field)
     if (args.record) {
-      type = database.schema.typeOf(args.record._id);
-      field = type.findElement(args.multiField);
+      type = database.schema.typeOf(params.record._id);
+      field = type.findElement(params.multiField);
       if (field) {
-        args.record[field.id] = util.multiEncode(args.id);
-        return args.record[field.id];
+        params.record[field.id] = util.multiEncode(params.id);
+        return params.record[field.id];
       } else
         return (
           "Le champ " +
-          args.multiFiled +
+          params.multiFiled +
           " esr introuvable dans la table " +
           type.caption
         );
-    } else return "Aucun enregistrement définit dans args.record. Essayez {record:this}";
+    } else return "Aucun enregistrement définit dans params.record. Essayez {record:this}";
   }
 
   //debugger;
