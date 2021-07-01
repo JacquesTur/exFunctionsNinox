@@ -198,7 +198,7 @@ window.exFnJt = (function () {
     var type;
 
     // récupération de la table (type) et du champ (field)
-    if (args.record) {
+    if (params.record) {
       type = database.schema.typeOf(params.record._id);
       field = type.findElement(params.multiField);
       if (field) {
