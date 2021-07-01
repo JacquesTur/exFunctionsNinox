@@ -208,7 +208,7 @@ window.exFnJt = (function () {
           util.multiEncode(params.id),
           null
         );
-        //params.record[field.id] = util.multiEncode(params.id);
+
         ret(params.record[field.id]);
       } else
         ret(
