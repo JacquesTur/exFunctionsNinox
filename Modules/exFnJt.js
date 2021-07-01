@@ -202,18 +202,26 @@ window.exFnJt = (function () {
       type = database.schema.typeOf(params.record._id);
       field = type.findElement(params.field);
       if (field) {
-		 database.update(params.record._id,field.id,util.multiEncode(params.id), null)
-        params.record[field.id] = util.multiEncode(params.id);
-        return params.record[field.id];
-      } else
-        return (
-          'Le champ ' +
-          params.multiFiled +
-          ' esr introuvable dans la table ' +
-          type.caption
+        database.update(
+          params.record._id,
+          field.id,
+          util.multiEncode(params.id),
+          null
         );
-    } else return 'Aucun enregistrement définit dans params.record. Essayez {record:this}';
-}
+        params.record[field.id] = util.multiEncode(params.id);
+        ret(params.record[field.id]);
+      } else
+        ret(
+          "Le champ " +
+            params.multiFiled +
+            " esr introuvable dans la table " +
+            type.caption
+        );
+    } else
+      ret(
+        "Aucun enregistrement définit dans params.record. Essayez {record:this}"
+      );
+  }
 
   //debugger;
   exFunctions.addExFunction();
@@ -233,5 +241,5 @@ window.exFnJt = (function () {
   exFunctions.addExFunction("exGetComments", exGetComments);
   exFunctions.addExFunction("exSetMultiValues", exSetMultiValues);
 
-    return {};
+  return {};
 })();
