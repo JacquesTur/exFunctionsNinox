@@ -1,5 +1,5 @@
 
-this.exRevision = 'rev 0.00.00.20b';
+this.exRevision = 'rev 0.00.00.20c';
 
 //import ('https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/Modules/exUtils.js');
 //let exUtils = await import('https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/Modules/exUtils.js');
@@ -694,12 +694,11 @@ window.exFunctions = (function ()
         Ctx.F[evalFunctor.functorId] = evalFunctor.fn;
 
         // IMPORTANT : force la mise à jour de Ninox pour prendre en compte les fonctions étendues
- /*       
- window.database.setSchema(window.database.originalSchema);
+        window.database.setSchema(window.database.originalSchema);
  
 
 
- */
+ 
 
         // $.alert('Fonctions étendues prêtes à être utilisées - ' + revision);
     }
