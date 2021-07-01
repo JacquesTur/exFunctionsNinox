@@ -213,6 +213,7 @@ window.exFnJt = (function () {
           type.caption
         );
     } else return 'Aucun enregistrement définit dans params.record. Essayez {record:this}';
+}
 
   //debugger;
   exFunctions.addExFunction();
