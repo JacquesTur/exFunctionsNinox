@@ -196,23 +196,23 @@ window.exFnJt = (function () {
   function exSetMultiValues(fnt, params, db, ret) {
     var field;
     var type;
-
+    debugger;
     // récupération de la table (type) et du champ (field)
     if (params.record) {
       type = database.schema.typeOf(params.record._id);
-      field = type.findElement(params.multiField);
+      field = type.findElement(params.field);
       if (field) {
+		 database.update(params.record._id,field.id,util.multiEncode(params.id), null)
         params.record[field.id] = util.multiEncode(params.id);
         return params.record[field.id];
       } else
         return (
-          "Le champ " +
+          'Le champ ' +
           params.multiFiled +
-          " esr introuvable dans la table " +
+          ' esr introuvable dans la table ' +
           type.caption
         );
-    } else return "Aucun enregistrement définit dans params.record. Essayez {record:this}";
-  }
+    } else return 'Aucun enregistrement définit dans params.record. Essayez {record:this}';
 
   //debugger;
   exFunctions.addExFunction();
