@@ -6,6 +6,7 @@ window.exFnJt = (function () {
 
   function exDebugger(fnt, params, db, ret) {
     debugger;
+    ret("Debugger mode");
   }
 
   function exGetVersion(fnt, params, db, ret) {
