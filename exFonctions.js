@@ -1,4 +1,4 @@
-this.exRevision = "rev 0.00.00.20o";
+this.exRevision = "rev 0.00.00.20p";
 
 //import ('https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/Modules/exUtils.js');
 //let exUtils = await import('https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/Modules/exUtils.js');
@@ -714,11 +714,11 @@ window.exFunctions = (function () {
     window.database.setSchema(window.database.originalSchema);
     if (!window.database.sendCommand) {
       debugger;
-      window.database.sendCommand = function (connexion, fn) {
+      window.database.sendCommand = function (connection, fn) {
         debugger;
-        if ((connexion.connectionName.connectionName = "JavaScrip")) {
+        if ((connection.connectionName.connectionName = "JavaScrip")) {
           try {
-            var fn = Function(connexion.connectionName.command );
+            var fn = Function(connection.connectionName.command );
             connection.command(null, fn());
           } catch (err) {
             var msgErr =
