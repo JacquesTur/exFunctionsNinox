@@ -695,6 +695,19 @@ window.exFunctions = (function ()
 
         // IMPORTANT : force la mise à jour de Ninox pour prendre en compte les fonctions étendues
         window.database.setSchema(window.database.originalSchema);
+        if (!window.database.sendCommand) {
+            debugger;
+            window.database.sendCommand = (function(connexion, command, fn){
+            if (evalFunctor.exFunctions[fnt]) {
+                debugger;
+                //Si c'est le cas, la fonction correspondante est appelée 
+                alert("Fonction exFonctions : "+command);
+                fn( null, "Salut les lapins")
+            }
+            else
+                fn("Cette fonction ne fait pas partie de exFonctions : " + command, null)
+        })
+    }
 
  
 
