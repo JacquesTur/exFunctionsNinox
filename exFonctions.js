@@ -698,8 +698,9 @@ window.exFunctions = (function ()
         if (!window.database.sendCommand) {
             debugger;
             window.database.sendCommand = (function(connexion, command, fn){
-            if (evalFunctor.exFunctions[fn]) {
                 debugger;
+            if (evalFunctor.exFunctions[fn]) {
+                
                 //Si c'est le cas, la fonction correspondante est appelée 
                 alert("Fonction exFonctions : "+command);
                 fn( null, "Salut les lapins")
