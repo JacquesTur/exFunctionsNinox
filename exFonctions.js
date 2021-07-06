@@ -1,5 +1,5 @@
 
-this.exRevision = 'rev 0.00.00.20j';
+this.exRevision = 'rev 0.00.00.20k';
 
 //import ('https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/Modules/exUtils.js');
 //let exUtils = await import('https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/Modules/exUtils.js');
