@@ -695,6 +695,7 @@ window.exFunctions = (function ()
 
         // IMPORTANT : force la mise à jour de Ninox pour prendre en compte les fonctions étendues
         window.database.setSchema(window.database.originalSchema);
+
  
 
 
