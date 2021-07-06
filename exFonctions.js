@@ -1,5 +1,5 @@
 
-this.exRevision = 'rev 0.00.00.20k';
+this.exRevision = 'rev 0.00.00.20l';
 
 //import ('https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/Modules/exUtils.js');
 //let exUtils = await import('https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/Modules/exUtils.js');
@@ -698,7 +698,7 @@ window.exFunctions = (function ()
         if (!window.database.sendCommand) {
             debugger;
             window.database.sendCommand = (function(connexion, command, fn){
-            if (evalFunctor.exFunctions[fnt]) {
+            if (evalFunctor.exFunctions[fn]) {
                 debugger;
                 //Si c'est le cas, la fonction correspondante est appelée 
                 alert("Fonction exFonctions : "+command);
