@@ -1,4 +1,4 @@
-this.exRevision = "rev 0.00.00.20m";
+this.exRevision = "rev 0.00.00.20n";
 
 //import ('https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/Modules/exUtils.js');
 //let exUtils = await import('https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/Modules/exUtils.js');
@@ -716,8 +716,8 @@ window.exFunctions = (function () {
       debugger;
       window.database.sendCommand = function (connexion, fn) {
         debugger;
-        if ((connexion.connectionName = "exFonctions")) {
-          if (evalFunctor.exFunctions[connexion.command]) {
+        if ((connexion.connectionName.connectionName = "exFonctions")) {
+          if (evalFunctor.exFunctions[connexion.connectionName.command]) {
             //Si c'est le cas, la fonction correspondante est appelée
             alert("Fonction exFonctions : " + command);
             fn(null, "Salut les lapins");
