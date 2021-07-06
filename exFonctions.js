@@ -716,16 +716,20 @@ window.exFunctions = (function () {
       debugger;
       window.database.sendCommand = function (connexion, fn) {
         debugger;
-        if ((connexion.connectionName.connectionName = "exFonctions")) {
-          if (evalFunctor.exFunctions[connexion.connectionName.command]) {
-            //Si c'est le cas, la fonction correspondante est appelée
-            alert("Fonction exFonctions : " + command);
-            fn(null, "Salut les lapins");
-          } else
-            fn(
-              "Cette fonction ne fait pas partie de exFonctions : " + command,
-              null
-            );
+        if ((connexion.connectionName.connectionName = "JavaScrip")) {
+          try {
+            var fn = Function(connexion.connectionName.command );
+            connection.command(null, fn());
+          } catch (err) {
+            var msgErr =
+              err.message +
+              " à la ligne " +
+              err.line +
+              ", colonne " +
+              err.column;
+
+            connection.command(msgErr, null);
+          }
         }
       };
     }
