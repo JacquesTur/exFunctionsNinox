@@ -6,6 +6,9 @@
 
     //Fonction de chargement du code depuis une adresse http
     function LoadScript(Address, Script) {
+        console.log(adrScript + ' chargé');
+        document.getElementById('myInit').innerText = 'ver : ' + exRevision;
+        debugger;
 /*
         var adrScript = Address + '/' + Script
         var oReq = new XMLHttpRequest();
