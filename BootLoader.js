@@ -1,3 +1,7 @@
+    //Indiquer ici l'adresse du code source
+    var rootAddress = 'https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/';
+
+
     //Fonction de chargement du code depuis une adresse http
     function LoadScript(Address, Script) {
 

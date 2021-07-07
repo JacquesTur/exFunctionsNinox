@@ -1,4 +1,4 @@
-this.exRevision = "rev 0.00.00.20q";
+this.exRevision = "rev 0.00.00.20r";
 
 //import ('https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/Modules/exUtils.js');
 //let exUtils = await import('https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/Modules/exUtils.js');
@@ -36,8 +36,7 @@ window.exModules = (function () {
   };
 })();
 
-<script type="text/javascript" src="./Modules/exUtils.js"></script>
-//exModules.loadModule(rootAddress, "Modules/exUtils.js");
+exModules.loadModule(rootAddress, "Modules/exUtils.js");
 
 window.exFunctions = (function () {
   //Code d'initialisation des fonctions étendues
@@ -883,8 +882,7 @@ window.exFunctions = (function () {
   };
 })();
 
-//exModules.loadModule(rootAddress, "Modules/exFnJt.js");
-<script type="text/javascript" src="./Modules/exFnJt.js"></script>
+exModules.loadModule(rootAddress, "Modules/exFnJt.js");
 //const exFnJt = require('./Modules/exFnJt.js');
 
 /*
