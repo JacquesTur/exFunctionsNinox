@@ -2,6 +2,7 @@
     //Indiquer ici l'adresse du code source
     var rootAddress = 'https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/';
 
+    
    // exFnt = require(rootAddress+'exFonctions.js');
 
     //Fonction de chargement du code depuis une adresse http
