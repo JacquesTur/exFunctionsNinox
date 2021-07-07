@@ -882,8 +882,8 @@ window.exFunctions = (function () {
   };
 })();
 
-//exModules.loadModule(rootAddress, "Modules/exFnJt.js");
-exFnJt = require('./Modules/exFnJt.js');
+exModules.loadModule(rootAddress, "Modules/exFnJt.js");
+//exFnJt = require('./Modules/exFnJt.js');
 
 /*
     JavaScript autoComplete v1.0.4
