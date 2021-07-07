@@ -7,7 +7,7 @@
     function LoadScript(Address, Script) {
         debugger;
         console.log(adrScript + ' chargé');
-        document.getElementById('myInit').innerText = 'ver : ' + exRevision;
+        document.getElementById('myInit').innerText = 'ver : ';// + exRevision;
 
     };
 
