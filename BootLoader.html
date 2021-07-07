@@ -26,14 +26,19 @@
                 debugger;
 
                 //Vérifie si une autre fenêtre popup n'était pas déjà préchargée lors de l'appel à Ninox 
-                if (widgets.popupEditorStack.length > 0)
+                if (ui.sideEditor.nid && ui.sideEditor.nid != '" + string(this.ID) + "' )  {
                     //Si c'est le cas, alors fermeture de la fenêtre d'initialisation pour laisser apparaitre la fenêtre en dessous
+					debugger;
                     ui.closeRecord();
+					}
                 else
                     //Dans le cas contraire, refaire la même vérification 2 secondes plus tard pour laisser le temps à Ninox de se charger.
                     setTimeout(function () {
-                        if (widgets.popupEditorStack.length > 0) ui.closeRecord();
-                    }, 2000);
+                        if (ui.sideEditor.nid && ui.sideEditor.nid != '" + string(this.ID) + "' ) {
+							debugger;
+							ui.closeRecord();
+						}
+                    }, 3000);
             } catch (err) {
                 // Affichage dans la console des évantuelles erreurs de code survenue lors de l'éxécution de la fonciton fn
                 var msgErr = err.message + ' à la ligne ' + err.line + ', colonne ' + err.column;
