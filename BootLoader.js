@@ -1,11 +1,9 @@
 
-    //Indiquer ici l'adresse du code source
-    var rootAddress = 'https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/';
+ 
 
-    
    // exFnt = require(rootAddress+'exFonctions.js');
 
-    //Fonction de chargement du code depuis une adresse http
+    //Fonction de chargement du code depuis une adresse https
     function LoadScript(Address, Script) {
         console.log(adrScript + ' chargé');
         document.getElementById('myInit').innerText = 'ver : ' + exRevision;
@@ -56,5 +54,3 @@
         //Appel du chargement 
         oReq.open('GET', adrScript); oReq.send(); false;
     }*/
-
-    alert('aaa');
