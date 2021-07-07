@@ -5,10 +5,15 @@
 
     //Fonction de chargement du code depuis une adresse https
     function LoadScript(Address, Script) {
+        debugger;
         console.log(adrScript + ' chargé');
         document.getElementById('myInit').innerText = 'ver : ' + exRevision;
-        debugger;
+
     };
+
+    function aaa(){
+        alert('AA');
+    }
 /*
         var adrScript = Address + '/' + Script
         var oReq = new XMLHttpRequest();
