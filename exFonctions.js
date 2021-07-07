@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 this.exRevision = "rev 0.00.00.20w";
+=======
+this.exRevision = "rev 0.00.00.20v";
+>>>>>>> 46b9525e1dd4918f2322b1f331a6adaff5ce716f
 
 //import ('https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/Modules/exUtils.js');
 //let exUtils = await import('https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/Modules/exUtils.js');
