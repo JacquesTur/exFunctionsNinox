@@ -1,4 +1,4 @@
-this.exRevision = "rev 0.00.00.20u";
+this.exRevision = "rev 0.00.00.20w";
 
 //import ('https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/Modules/exUtils.js');
 //let exUtils = await import('https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/Modules/exUtils.js');
@@ -882,8 +882,8 @@ window.exFunctions = (function () {
   };
 })();
 
-//exModules.loadModule(rootAddress, "Modules/exFnJt.js");
-exFnJt = require('./Modules/exFnJt.js');
+exModules.loadModule(rootAddress, "Modules/exFnJt.js");
+//exFnJt = require('./Modules/exFnJt.js');
 
 /*
     JavaScript autoComplete v1.0.4
