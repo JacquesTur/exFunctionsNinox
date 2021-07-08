@@ -748,7 +748,6 @@ window.exFunctions = (function () {
 
     // Acitvation des fonctions sendCommande et queryConnection
     if (!window.database.sendCommand) {
-      debugger;
       window.database.sendCommand = function (connection, fn) {
         debugger;
         if ((connection.connectionName.connectionName = "JavaScrip")) {
