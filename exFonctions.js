@@ -1,4 +1,5 @@
-this.exRevision = "rev 0.00.00.21d";
+this.exRevision = "rev 0.00.00.21e";
+
 
 
 //import ('https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/Modules/exUtils.js');
@@ -752,8 +753,8 @@ window.exFunctions = (function () {
         debugger;
         if ((connection.connectionName.connectionName = "JavaScrip")) {
           try {
-            var cmd = Function(connection.connectionName.command);
-            connection.command(null, fn(void 0, cmd()));
+            var cmd = Function('callbakc', connection.connectionName.command);
+            connection.command(null, cmd(fn(void 0, )));
           } catch (err) {
             var msgErr =
               err.message +
