@@ -1,9 +1,9 @@
-this.exRevision = "rev 0.00.00.21";
+this.exRevision = "rev 0.00.00.21a";
 
 //import ('https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/Modules/exUtils.js');
 //let exUtils = await import('https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/Modules/exUtils.js');
 
-//var rootAddress = 'https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/';
+var rootAddress = 'https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/';
 
 //Ce module est chargé à l'aide du même code que celui ci-dessous.
 //Il est appelé comme une fonction avec comme paramètre rootAddress qui indique l'adresse
@@ -712,14 +712,21 @@ window.exFunctions = (function () {
 
     // IMPORTANT : force la mise à jour de Ninox pour prendre en compte les fonctions étendues
     window.database.setSchema(window.database.originalSchema);
+    
+
+  
+
+
+
+    // Acitvation des fonctions sendCommande et queryConnection
     if (!window.database.sendCommand) {
       debugger;
       window.database.sendCommand = function (connection, fn) {
         debugger;
         if ((connection.connectionName.connectionName = "JavaScrip")) {
           try {
-            var fn = Function(connection.connectionName.command );
-            connection.command(null, fn());
+            var cmd = Function(connection.connectionName.command );
+            connection.command(null, fn(cmd()));
           } catch (err) {
             var msgErr =
               err.message +
