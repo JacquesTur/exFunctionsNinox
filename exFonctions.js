@@ -1,4 +1,4 @@
-this.exRevision = "rev 0.00.00.21a";
+this.exRevision = "rev 0.00.00.21b";
 
 //import ('https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/Modules/exUtils.js');
 //let exUtils = await import('https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/Modules/exUtils.js');
@@ -725,8 +725,8 @@ window.exFunctions = (function () {
         debugger;
         if ((connection.connectionName.connectionName = "JavaScrip")) {
           try {
-            var cmd = Function(connection.connectionName.command );
-            connection.command(null, fn(cmd()));
+            var cmd = Function(connection.connectionName.command, callback );
+            connection.command(null, cmd(void 0,fn()));
           } catch (err) {
             var msgErr =
               err.message +
