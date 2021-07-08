@@ -241,6 +241,5 @@ window.exFnJt = (function () {
   exFunctions.addExFunction("exPrompt", exPrompt);
   exFunctions.addExFunction("exGetComments", exGetComments);
   exFunctions.addExFunction("exSetMultiValues", exSetMultiValues);
-  alert('Init exFntJt');
   return {};
 })();
