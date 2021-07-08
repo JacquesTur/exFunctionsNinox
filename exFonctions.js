@@ -1,9 +1,10 @@
-this.exRevision = "rev 0.00.00.21b";
+this.exRevision = "rev 0.00.00.21c";
 
 //import ('https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/Modules/exUtils.js');
 //let exUtils = await import('https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/Modules/exUtils.js');
 
-var rootAddress = 'https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/';
+var rootAddress =
+  "https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/";
 
 //Ce module est chargé à l'aide du même code que celui ci-dessous.
 //Il est appelé comme une fonction avec comme paramètre rootAddress qui indique l'adresse
@@ -712,11 +713,36 @@ window.exFunctions = (function () {
 
     // IMPORTANT : force la mise à jour de Ninox pour prendre en compte les fonctions étendues
     window.database.setSchema(window.database.originalSchema);
-    
 
-  
+    function aa() {
+      debugger;
 
+      var options = {
+        nid: '" + string(this.ID) + "',
+        exp: "Texte:=now(); 1+2;",
+      };
 
+      var adrScript = Address + "/" + Script;
+      var fileModule = new XMLHttpRequest();
+      fileModule.addEventListener("load", function fLoad() {
+        try {
+          console.log("script chargé : " + this.responseText);
+          return this.responseText;
+        } catch (err) {
+          console.log(" erreur au chargement de " + Script + " : " + err);
+          return err;
+        }
+      });
+      // Avec le paramètre false dans la fonction open, le send sera exécuté en synchrone,
+      // s'est à dire qu'il n'en sortira qu'apèrs avoir reçu le message retour du serveur et
+      // écecuté l'évanement 'load'.
+      fileModule.open(
+        "POST",
+        database.server.baseURL + "/json/evaluate",
+        false
+      );
+      fileModule.send();
+    }
 
     // Acitvation des fonctions sendCommande et queryConnection
     if (!window.database.sendCommand) {
@@ -725,8 +751,8 @@ window.exFunctions = (function () {
         debugger;
         if ((connection.connectionName.connectionName = "JavaScrip")) {
           try {
-            var cmd = Function(connection.connectionName.command, callback );
-            connection.command(null, cmd(void 0,fn()));
+            var cmd = Function(connection.connectionName.command);
+            connection.command(null, cmd(void 0, fn()));
           } catch (err) {
             var msgErr =
               err.message +
