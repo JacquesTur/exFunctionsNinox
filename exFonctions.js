@@ -753,8 +753,8 @@ window.exFunctions = (function () {
         debugger;
         if ((connection.connectionName.connectionName = "JavaScrip")) {
           try {
-            var cmd = Function('callbakc', connection.connectionName.command);
-            connection.command(null, cmd(fn(void 0, )));
+            var cmd = new Function('callbakc', connection.connectionName.command);
+            connection.command(null, cmd(fn()));
           } catch (err) {
             var msgErr =
               err.message +
