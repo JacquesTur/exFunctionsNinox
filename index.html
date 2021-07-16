@@ -26,7 +26,7 @@
 
                         console.error('Request error with status', e.target.status);
                     });
-                    xhr.open('get', adr + '/' + Module, true);
+                    xhr.open('get', adr + '/' + Module, false);
                  //   xhr.setRequestHeader('Content-Type', 'application/javascript');
                     xhr.send(null);
                 } catch (err) {
