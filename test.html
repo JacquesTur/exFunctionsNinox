@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+  <html>
+
+  <body>
+
+    <p>Click the button to write some text in the new window and the source (parent) window.</p>
+
+    <a onclick="myFunction()">Try it</a>
+
+    <script>
+
+
+      function fichier_txt(fich) {
+
+        if (window.XMLHttpRequest) {
+          obj_pers = new XMLHttpRequest(); //Pour Chrome, Firefox, Opera et les autres...
+        } else if (window.ActiveXObject) {
+          obj_pers = new ActiveXObject("Microsoft.XMLHTTP"); //Pour Internet Explorer 
+        } else {
+          return (false);
+        }
+
+        if (obj_pers.overrideMimeType) {
+          obj_pers.overrideMimeType("text/xml"); //Évite un bug de Safari
+        }
+
+
+        obj_pers.open("GET", fich, false);
+        obj_pers.send();
+debugger;
+        if (obj_pers.readyState == 4) {
+          return (obj_pers.responseText);
+        } else {
+          return (false);
+        }
+
+      }
+
+      function myFunction() {
+        //alert('');
+       debugger;
+        //document.body.innerHTML = "<div>eee</div>";
+        alert( fichier_txt("https://exfunctionsninox-eszs.emporter.eu/index.html"));
+      }
+    </script>
+  </body>
+
+  </html>

@@ -1,33 +1,54 @@
-<script src='exFonctions.js'></script>
 
-<div>Bonjour à tous</div>
 
-<script>
+<body>
+    <div>exFunctions par Robert et Jacques.</div>
+    <div id="exInit">
+        </dvi>
+        <script>
+            function ChargerModule(AdrModule, Module) {
+                var xhr = new XMLHttpRequest();
+                var timeStart = new Date().getTime();
+                var adr = AdrModule ? AdrModule : "https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master"
+                xhr.addEventListener('load', function (e) {
+                    var response = e.target.responseText;
+                    var timeStop = new Date().getTime();
+                    if (e.target.status==200) {
+                    var fn = Function("rootAddress", response);
+                    fn(adr);
+                    console.log("chargé : (" +(timeStop-timeStart).toString()+"ms) " + e.target.responseURL);
+                } else {
+                    console.log("erreur sur : " + adr+'/'+Module + " : "+ e.target.status  + " = "+ e.target.responseURL);
+                }
+                });
+                xhr.addEventListener('error', function (e) {
 
-    function exLoadScript(Address, Script) {
-
-        var adrScript = Address + '/' + Script
-        var oReq = new XMLHttpRequest();
-        oReq.addEventListener('load', function fLoad() {
-
-            try {
-                debugger;
-                console.log('Chargement : ' + adrScript)
-                //eval(this.responseText + '\r\n//# sourceURL=' + adrScript); 
-                var fn = Function(rootAdresse, this.responseText);
-                fn(null);
-                console.log('script chargé : ' + adrScript)
-            } catch (err) {
-                var msgErr = err.message + ' à la ligne ' + err.line + ', colonne ' + err.column;
-                console.log(' erreur au chargement de ' + Script + ' : ' + err);
+                    console.error('Request error with status', e.target.status);
+                });
+                xhr.open('POST', adr+'/'+Module, false);
+                xhr.setRequestHeader('Content-Type', 'text/html');
+                xhr.send();
             }
-        });
-        oReq.open('GET', adrScript); oReq.send(); false;
-    }
-    debugger;
-    var rootAddress = 'https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/';
-    LoadScript(rootAddress, 'Modules/exUtils.js');
-    LoadScript(rootAddress, 'exFonctions.js');
-</script>
-<div style=":background-color: ;">eee</div>
 
+            function exInit(AdresseDeBase) {
+                
+
+                ChargerModule( AdresseDeBase, 'exVersion.js', );
+                ChargerModule( AdresseDeBase, 'Modules/exUtils.js', );
+                ChargerModule( AdresseDeBase, 'Modules/exModule.js', );
+                ChargerModule( AdresseDeBase, 'exFonctions.js', );
+                ChargerModule( AdresseDeBase, 'Modules/exFnJT.js', );
+                ChargerModule( AdresseDeBase, 'Modules/exFnRT.js', );
+                
+            }
+            exInit();
+//            exInit('https://exfunctionsninox-eszs.emporter.eu');
+            document.getElementById('exInit').innerText = 'version : ' + exRevision;
+        
+            // IMPORTANT : force la mise à jour de Ninox pour prendre en compte les fonctions étendues
+            if (!database.adminMode) {        
+                window.database.setSchema(window.database.originalSchema);
+            }
+        </script>
+</body>
+
+</html>
