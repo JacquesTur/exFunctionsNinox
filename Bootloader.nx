@@ -1,27 +1,18 @@
-var code := http("get", "https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master/exFonctions.js");
-var strInit := "<div id='version'>sortir du mode Admin pour charger exFonctions</div>";
-if not isAdminMode() then
-	strInit := strInit + "<script>
-	// Affichage de Charmgement en cours...
-	document.getElementById('version').innerText = 'chargement en cours...';
-	" + code.result + "
-	//Affichage du numéro de version une fois le code de chargement exéctué
-	document.getElementById('version').innerText = 'ver : ' + exRevision;
-
- 	//Vérifie si une autre fenêtre popup n'était pas déjà préchargée lors de l'appel à Ninox 
-    if (ui.sideEditor.nid && ui.sideEditor.nid != '" + string(this.ID) + "' )  {
-    //Si c'est le cas, alors fermeture de la fenêtre d'initialisation pour laisser apparaitre la fenêtre en dessous
-		debugger;
-        ui.closeRecord();
-	}
-    else
-    	//Dans le cas contraire, refaire la même vérification 2 secondes plus tard pour laisser le temps à Ninox de se charger.
-        setTimeout(function () {
-        	if (ui.sideEditor.nid && ui.sideEditor.nid != '" + string(this.ID) + "' ) {
-				debugger;
-				ui.closeRecord();
-			}
-        	}, 3000);
-	</script>"
+var Emporter := "!mettre ici votre adresse Emporter. ATTENTION : à utiliser avec Safari Technolgy Previex";
+var  
+case 0:
+	(strInit := "<script src='" + Emporter + "'>alert(exRevision);</script>")
+case 2:
+	(strInit := raw(http("get", 'Git Hub' + "/index.html", {
+			'Content-Type': "text/html"
+		}, "").result + ---
+<script>exInit('{ 'Git Hub' }')</script>
+---))
+case 3:
+	(strInit := raw(http("get", Emporter, {
+			'Content-Type': "text/html"
+		}, "").result + ---
+<script>exInit('{ Emporter }')</script>
+---))
 end;
 html(strInit)

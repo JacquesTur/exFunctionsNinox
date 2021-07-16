@@ -1,8 +1,8 @@
-<body>
-    <div>exFunctions par Robert et Jacques.</div>
-    <div id="exInit">
-        </dvi>
-        <script>
+<div>exFunctions par Robert et Jacques.</div>
+<div id="exInit">
+    </dvi>
+    <script>
+        try {
             var GitHubAdr = "https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master"
             function ChargerModule(AdrModule, Module) {
                 var xhr = new XMLHttpRequest();
@@ -47,8 +47,10 @@
                 }
 
             }
-//            exInit();
-        </script>
-</body>
-
-</html>
+            //            exInit();
+        } catch (err) {
+            var msgErr =
+                err.message + " à la ligne " + err.line + ", colonne " + err.column;
+            console.log(" erreur au chargement de " + Script + " : " + err);
+        }
+    </script>
