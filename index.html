@@ -26,7 +26,7 @@
 
                     console.error('Request error with status', e.target.status);
                 });
-                xhr.open('POST', adr+'/'+Module, false);
+                xhr.open('get', adr+'/'+Module, false);
                 xhr.setRequestHeader('Content-Type', 'text/html');
                 xhr.send();
             }
