@@ -5,13 +5,15 @@
     <div id="exInit">
         </dvi>
         <script>
+            var GitHubAdr = "https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master"
             function ChargerModule(AdrModule, Module) {
                 var xhr = new XMLHttpRequest();
                 var timeStart = new Date().getTime();
-                var adr = AdrModule ? AdrModule : "https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master"
+                var adr = AdrModule ? AdrModule : GitHubAdr;
                 xhr.addEventListener('load', function (e) {
                     var response = e.target.responseText;
                     var timeStop = new Date().getTime();
+                    debugger;
                     if (e.target.status==200) {
                     var fn = Function("rootAddress", response);
                     fn(adr);
@@ -31,7 +33,7 @@
 
             function exInit(AdresseDeBase) {
                 
-
+                debugger;
                 ChargerModule( AdresseDeBase, 'exVersion.js', );
                 ChargerModule( AdresseDeBase, 'Modules/exUtils.js', );
                 ChargerModule( AdresseDeBase, 'Modules/exModule.js', );
