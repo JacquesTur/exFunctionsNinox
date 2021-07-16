@@ -26,8 +26,8 @@
 
                         console.error('Request error with status', e.target.status);
                     });
+                    document.getElementById('exInit').innerText += '\nchargement de ' + adr + '/' + Module;
                     xhr.open('get', adr + '/' + Module, false);
-                 //   xhr.setRequestHeader('Content-Type', 'application/javascript');
                     xhr.send(null);
                 } catch (err) {
                     var msgErr =
@@ -39,15 +39,17 @@
 
             function exInit(AdresseDeBase) {
 
-        
+                $.loading(!0);
+                document.getElementById('exInit').innerText += '';
                 ChargerModule(AdresseDeBase, 'exVersion.js',);
                 ChargerModule(AdresseDeBase, 'Modules/exUtils.js',);
                 ChargerModule(AdresseDeBase, 'Modules/exModule.js',);
                 ChargerModule(AdresseDeBase, 'exFonctions.js',);
                 ChargerModule(AdresseDeBase, 'Modules/exFnJT.js',);
                 ChargerModule(AdresseDeBase, 'Modules/exFnRT.js',);
+                $.loading(!1);
 
-                document.getElementById('exInit').innerText = 'version : ' + exRevision;
+                document.getElementById('exInit').innerText += '\nversion : ' + exRevision;
 
                 // IMPORTANT : force la mise à jour de Ninox pour prendre en compte les fonctions étendues
                 if (!database.adminMode) {
