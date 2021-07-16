@@ -1,48 +1,104 @@
-<!DOCTYPE html>
-  <html>
+<div id='version'>sortir du mode Admin pour charger exFonctions</div>
+<div>exFunctions par Robert et Jacques.</div>
+<div id="exInit">
+  </dvi>
+  <script>
 
-  <body>
+    var GitHubAdr = "https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master"
+    function ChargerModule(AdrModule, Module) {
 
-    <p>Click the button to write some text in the new window and the source (parent) window.</p>
+      try {
+        var xhr = new XMLHttpRequest();
+        var timeStart = new Date().getTime();
+        var adr = AdrModule ? AdrModule : GitHubAdr;
+        var Script = "";
+        xhr.addEventListener('load', function (e) {
+          Script = e.target.responseText;
+          var timeStop = new Date().getTime();
+          debugger;
+          if (e.target.status == 200) {
+            var fn = Function("rootAddress", Script);
+            fn(adr);
+            console.log("chargé : (" + (timeStop - timeStart).toString() + "ms) " + e.target.responseURL);
+          } else {
+            console.log("erreur sur : " + adr + '/' + Module + " : " + e.target.status + " = " + e.target.responseURL);
+          }
+        });
+        xhr.addEventListener('error', function (e) {
 
-    <a onclick="myFunction()">Try it</a>
+          console.error('Request error with status', e.target.status);
+        });
+        xhr.open('get', adr + '/' + Module, true);
+        //   xhr.setRequestHeader('Content-Type', 'application/javascript');
+        xhr.send(null);
+      } catch (err) {
+        var msgErr =
+          err.message + " à la ligne " + err.line + ", colonne " + err.column;
+        console.log(" erreur au chargement de " + Script + " : " + err);
+      }
+    }
 
-    <script>
+    function exInit(AdresseDeBase) {
 
+      debugger;
+      ChargerModule(AdresseDeBase, 'exVersion.js',);
+      ChargerModule(AdresseDeBase, 'Modules/exUtils.js',);
+      ChargerModule(AdresseDeBase, 'Modules/exModule.js',);
+      ChargerModule(AdresseDeBase, 'exFonctions.js',);
+      ChargerModule(AdresseDeBase, 'Modules/exFnJT.js',);
+      ChargerModule(AdresseDeBase, 'Modules/exFnRT.js',);
 
-      function fichier_txt(fich) {
+      document.getElementById('exInit').innerText = 'version : ' + exRevision;
 
-        if (window.XMLHttpRequest) {
-          obj_pers = new XMLHttpRequest(); //Pour Chrome, Firefox, Opera et les autres...
-        } else if (window.ActiveXObject) {
-          obj_pers = new ActiveXObject("Microsoft.XMLHTTP"); //Pour Internet Explorer 
-        } else {
-          return (false);
-        }
-
-        if (obj_pers.overrideMimeType) {
-          obj_pers.overrideMimeType("text/xml"); //Évite un bug de Safari
-        }
-
-
-        obj_pers.open("GET", fich, false);
-        obj_pers.send();
-debugger;
-        if (obj_pers.readyState == 4) {
-          return (obj_pers.responseText);
-        } else {
-          return (false);
-        }
-
+      // IMPORTANT : force la mise à jour de Ninox pour prendre en compte les fonctions étendues
+      if (!database.adminMode) {
+        window.database.setSchema(window.database.originalSchema);
       }
 
-      function myFunction() {
-        //alert('');
-       debugger;
-        //document.body.innerHTML = "<div>eee</div>";
-        alert( fichier_txt("https://exfunctionsninox-eszs.emporter.eu/index.html"));
-      }
-    </script>
-  </body>
 
-  </html>
+
+
+    }
+    exInit();
+  </script>
+  <script>
+    debugger;
+    patt = /\/node\/HB2/g;
+    patt.compile(patt);
+    var demPreCharge = patt.test(document.URL);
+
+    patt = /\/node\/SB1/g;
+    patt.compile(patt);
+    var initPreCharge = patt.test(document.URL);
+
+
+    patt = /\/node\/\w+\d+/g;
+    patt.compile(patt);
+    var autrePreCharge = patt.test(document.URL) & !initPreCharge & !demPreCharge;
+
+    //$.loading(!0);
+    // Affichage de Charmgement en cours...
+    document.getElementById('version').innerText = 'chargement en cours...';
+
+    exInit('https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master');
+
+    //Affichage du numéro de version une fois le code de chargement exéctué	
+    document.getElementById('version').innerText = 'ver : ' + exRevision;
+
+
+    //Vérifie si une autre fenêtre popup n'était pas déjà préchargée lors de l'appel à Ninox 
+    //if (ui.sideEditor.nid && ui.sideEditor.nid != 'SB1' )  {
+    debugger;
+    ui.closeRecord();
+
+    //$.loading(!1);
+
+    if (!autrePreCharge && !demPreCharge) {
+      //Si c'est le cas, alors fermeture de la fenêtre d'initialisation pour laisser apparaitre la fenêtre en dessous
+      //debugger;
+      ui.popupRecord('HB2');
+    }
+
+
+
+  </script>
