@@ -13,7 +13,7 @@
                     xhr.addEventListener('load', function (e) {
                         Script = e.target.responseText;
                         var timeStop = new Date().getTime();
-                        debugger;
+                      
                         if (e.target.status == 200) {
                             var fn = Function("rootAddress", Script);
                             fn(adr);
@@ -39,7 +39,7 @@
 
             function exInit(AdresseDeBase) {
 
-                debugger;
+        
                 ChargerModule(AdresseDeBase, 'exVersion.js',);
                 ChargerModule(AdresseDeBase, 'Modules/exUtils.js',);
                 ChargerModule(AdresseDeBase, 'Modules/exModule.js',);

@@ -3,7 +3,7 @@
 
 
 window.exFunctions = (function () {
-  debugger;
+
   //Code d'initialisation des fonctions étendues
   var Ctx = new queries.JSRuntimeContext();
 

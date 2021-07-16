@@ -6,7 +6,6 @@ var GitHubAddress =  "https://raw.githubusercontent.com/JacquesTur/exFunctionsNi
 //Il est appelé comme une fonction avec comme paramètre rootAddress qui indique l'adresse
 //de base du serveur pour trouver les autres modules.
 
-debugger;
 window.exModules = (function () {
   console.log("exModule.constructor");
   return {
