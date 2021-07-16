@@ -1,5 +1,3 @@
-
-
 <body>
     <div>exFunctions par Robert et Jacques.</div>
     <div id="exInit">
@@ -14,42 +12,42 @@
                     var response = e.target.responseText;
                     var timeStop = new Date().getTime();
                     debugger;
-                    if (e.target.status==200) {
-                    var fn = Function("rootAddress", response);
-                    fn(adr);
-                    console.log("chargé : (" +(timeStop-timeStart).toString()+"ms) " + e.target.responseURL);
-                } else {
-                    console.log("erreur sur : " + adr+'/'+Module + " : "+ e.target.status  + " = "+ e.target.responseURL);
-                }
+                    if (e.target.status == 200) {
+                        var fn = Function("rootAddress", response);
+                        fn(adr);
+                        console.log("chargé : (" + (timeStop - timeStart).toString() + "ms) " + e.target.responseURL);
+                    } else {
+                        console.log("erreur sur : " + adr + '/' + Module + " : " + e.target.status + " = " + e.target.responseURL);
+                    }
                 });
                 xhr.addEventListener('error', function (e) {
 
                     console.error('Request error with status', e.target.status);
                 });
-                xhr.open('get', adr+'/'+Module, false);
+                xhr.open('get', adr + '/' + Module, false);
                 xhr.setRequestHeader('Content-Type', 'text/html');
                 xhr.send();
             }
 
             function exInit(AdresseDeBase) {
-                
+
                 debugger;
-                ChargerModule( AdresseDeBase, 'exVersion.js', );
-                ChargerModule( AdresseDeBase, 'Modules/exUtils.js', );
-                ChargerModule( AdresseDeBase, 'Modules/exModule.js', );
-                ChargerModule( AdresseDeBase, 'exFonctions.js', );
-                ChargerModule( AdresseDeBase, 'Modules/exFnJT.js', );
-                ChargerModule( AdresseDeBase, 'Modules/exFnRT.js', );
-                
+                ChargerModule(AdresseDeBase, 'exVersion.js',);
+                ChargerModule(AdresseDeBase, 'Modules/exUtils.js',);
+                ChargerModule(AdresseDeBase, 'Modules/exModule.js',);
+                ChargerModule(AdresseDeBase, 'exFonctions.js',);
+                ChargerModule(AdresseDeBase, 'Modules/exFnJT.js',);
+                ChargerModule(AdresseDeBase, 'Modules/exFnRT.js',);
+
+                document.getElementById('exInit').innerText = 'version : ' + exRevision;
+
+                // IMPORTANT : force la mise à jour de Ninox pour prendre en compte les fonctions étendues
+                if (!database.adminMode) {
+                    window.database.setSchema(window.database.originalSchema);
+                }
+
             }
-            exInit();
-//            exInit('https://exfunctionsninox-eszs.emporter.eu');
-            document.getElementById('exInit').innerText = 'version : ' + exRevision;
-        
-            // IMPORTANT : force la mise à jour de Ninox pour prendre en compte les fonctions étendues
-            if (!database.adminMode) {        
-                window.database.setSchema(window.database.originalSchema);
-            }
+//            exInit();
         </script>
 </body>
 
