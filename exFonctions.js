@@ -76,6 +76,7 @@ window.exFunctions = (function () {
         //Recherche si le premier paramètre de la fonction eval contien strictement le nom d'une fonction étendue
         if (evalFunctor.exFunctions[fnt]) {
           //Si c'est le cas, la fonction correspondante est appelée
+          
           evalFunctor.exFunctions[fnt](fnt, params, db, ret);
         } else {
           //Dans le cas contraire, c'est la fonction de Ninox qui est appelée.
@@ -127,7 +128,7 @@ window.exFunctions = (function () {
         if ((connection.connectionName.connectionName = "JavaScrip")) {
           try {
             var cmd = new Function('callbakc', connection.connectionName.command);
-            connection.command(null, cmd(fn));
+            connection.a(null, cmd(fn));
           } catch (err) {
             var msgErr =
               err.message +
@@ -196,7 +197,7 @@ window.exFunctions = (function () {
             '");';
           var err = exUtils.fireEval(fnOnSelect, recordId);
           if (err)
-            alert(n.field.caption + ".onSelect : " + err + "\n" + fnOnSelect);
+            console.log(n.field.caption + ".onSelect : " + err + "\n" + fnOnSelect);
         }
       }
     },
@@ -225,7 +226,7 @@ window.exFunctions = (function () {
           fnOnClick += "; \n onClick();";
           var err = exUtils.fireEval(fnOnClick, recordId);
           if (err)
-            alert(n.field.caption + ".onClick : " + err + "\n" + fnOnClick);
+            console.log(n.field.caption + ".onClick : " + err + "\n" + fnOnClick);
         }
       }
     },

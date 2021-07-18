@@ -1,4 +1,3 @@
-
 window.exUtils = (function () {
   console.log("exutils.constructor");
   return {
@@ -14,26 +13,31 @@ window.exUtils = (function () {
 
     fireEval: function (fn, recordId) {
       try {
+        console.log("fireEval(" + fn + ",\n" + recordId + ")");
+
         var type = database.typeOf(recordId);
-        var compile = queries.parseHuman(
+        var compile = queries.parseSystem(
           database.schema,
           type,
-          unescape(fn),
+          unescape("("+fn+")"),
           {}
         );
         //            compile.flags ^= 16;
         //            compile.flags |= 16;
+        if (compile.hasErrors())
+          compile = queries.parseHuman(database.schema, type, unescape(fn), {});
         if (compile.hasErrors())
           return "Erreur d'expression : " + compile.errorMessage();
         var result = database.loadNode(recordId, function (e, i) {
           return e
             ? "Failed to load record: " + e
             : i
-            ? void compile.evaluate(database, i, function (error, t) {
+            ? compile.evaluate(database, i, function (error, t) {
                 if (error) return "Failed to evaluate expression: " + error;
                 return t;
               })
-            : "Record not found: " + recordId;
+            : //? compile.evaluateSync(database, i)
+              "Record not found: " + recordId;
         });
       } catch (err) {
         var msgErr =
@@ -78,7 +82,7 @@ window.exUtils = (function () {
           return e
             ? "Failed to load record: " + e
             : i
-            ? void exp.evaluate(database, i, function (error, t) {
+            ? exp.evaluate(database, i, function (error, t) {
                 if (error) return "Failed to evaluate expression: " + error;
                 return t;
               })
@@ -103,43 +107,61 @@ window.exUtils = (function () {
       return id;
     },
 
-    findNxComponentByElementId(id) {
-      var component = document.getElementById(id);
-      return component
-        ? (fieldComponent = component.closest(".component"))
-        : null;
+    findNxComponentFromElementId: function (elementId) {
+      var component = $("#" + elementId);
+      return component ? component.closest(".component") : void 0;
     },
 
-    getNxFieldDatabyIdComponent(component) {
-      return component ? (fieldComponent = component.data("component")) : null;
+    findNxCompomentData: function (component) {
+      return component ? component.data("component") : void 0;
     },
 
-    extractNxFonctionInScript(fnName, script) {
-      var s = script.toString().match(/(function callback.*(do (?=\().*))/g);
-      str = str.toString().match(/.[^\(|^\)]*/g);
-      debugger;
+    extractNxFonctionInScript: function (fnName, script) {
+      // /(function fnName.*(do (?=\().*))/g
+      var s = script.toString().match("function " + fnName + ".*", "g");
+      s = s.toString().match(/.[^\(|^\)]*/g);
       var p = 1;
       var r = "";
       for (i in s) {
-        r += s[i];
         if (s[i][0] == "(") p++;
-        if (s[i][0] == ")") p--;
+        if (s[i][0] == ")") {
+          p--;
+          if (p <= 0) s[i] = s[i][0];
+        }
         if (p <= 0) break;
+        r += s[i];
       }
       return r;
     },
 
-    fireNxFunction: function (fnName, fnScript, recordId) {
-      var fn = script + ";\n" + fnName + "(";
-      debugger;
-      for (let i = 3; i < arguments.length; i++) {
-        fn += arguments[i].toString();
+    fireNxFunction: function (fnName, elementId) {
+      var cpn = this.findNxComponentFromElementId(elementId);
+      var data = cpn ? this.findNxCompomentData(cpn) : void 0;
+      var fnScript = data.field.fn
+        ? this.extractNxFonctionInScript(fnName, data.field.fn)
+        : void 0;
+      var recordId = data.container.nid ? data.container.nid : null;
+      var fn = fnScript + ";\n" + fnName + "(";
+      var a;
+      for (let i = 2; i < arguments.length; i++) {
+        a = arguments[i].valueOf();
+        if (Number.isInteger(a)) fn += a;
+        else fn += '"' + a + '"';
+
         if (i < arguments.length - 1) fn += ", ";
       }
       fn += ");";
-      return fireEval( fn, recordId );
+      return this.fireEval(fn, recordId);
+    },
+
+    findNxFunctionInField: function (fnName, elementName) {
+      var cpn = this.findNxComponentFromElementId(elementName);
+      var dataField = this.findNxCompomentData(cpn);
+      return dataField.field.fn
+        ? this.extractNxFonctionInScript(fnName, dataField.field.fn)
+        : void 0;
     },
   };
 })();
 
-console.log('exUtils chargé');
+console.log("exUtils chargé");

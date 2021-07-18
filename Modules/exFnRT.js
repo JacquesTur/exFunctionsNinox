@@ -171,12 +171,12 @@ window.exFnRT = (function () {
     }
   
     function exButtonNavBar(fnt, params, db, ret) {
-      //debugger;
+      debugger;
       try {
         var myButtonNavBarTitle = params.title;
         var myButtonNavBarId = params.buttonId;
-        var myBkColor1 = "red";
-        var myFntColor2 = "white";
+        var myBkColor = "red";
+        var myFntColor = "white";
         if (params.BackgroundColor) myBkColor = params.BackgroundColor;
         if (params.FontColor) myFntColor = params.FntColor;
         //        var myButtonNavBarId = generateUniqueId("buttonNavBarId");
