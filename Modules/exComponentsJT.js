@@ -68,12 +68,12 @@ window.exComponentsJT = (function () {
            
                 } else cosole.log("exButtonHeader : navigation bar not found !");
           
-                ret(button != null && myMenuTop != null);
+                return (button != null && myMenuTop != null);
               } catch (err) {
                 var msgErr =
                   err.message + " à la ligne " + err.line + ", colonne " + err.column;
           
-                return ret(msgErr);
+                return msgErr;
               }
         }
     };
