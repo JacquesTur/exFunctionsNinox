@@ -76,17 +76,7 @@ window.exFnJt = (function () {
         }
         strLines += ">" + label + "</option>";
       }
-      debugger;
-      click = (id) => {
-        debugger;
-        var e = document.getElementById(id)
-        if (e) {
-          var option = e.options[e.options.selectedIndex];
-          var err = window.exUtils.fireNxFunction("onSelect", e.id, option.innerText, option.id ); 
-          if (err) console.log(err);
-        }
 
-      }
     
       var codeHTML =
         "<select class='stringeditor' style='height: 100%; width:100%; overflow:visible; padding:0px; background:none; padding-left:5px' id=" +
@@ -237,6 +227,7 @@ window.exFnJt = (function () {
   }
 
   function exButtonHeader(fnt, params, db, ret) {
+    /*
     try {
       var myButtonHeaderTitle = params.title;
       var myButtonHeaderId = params.buttonId
@@ -311,7 +302,9 @@ window.exFnJt = (function () {
 
       return ret(msgErr);
     }
-  }
+  */
+    return ret(exComponentsJT.exButtonHeader( params ));
+   }
   //debugger;
   exFunctions.addExFunction();
   exFunctions.addExFunction("exAlert", exAlert);

@@ -1,64 +1,70 @@
-        <div id="exInit">Sortir du mode Admin pour metre à jour le code
-        </dvi>
-        <script>
+<div id="exInit">Sortir du mode Admin pour metre à jour le code
+    </dvi>
+    <script>
 
-            var GitHubAdr = "https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master"
-            function ChargerModule(AdrModule, Module) {
-    
-                try {
-                    var xhr = new XMLHttpRequest();
-                    var timeStart = new Date().getTime();
-                    var adr = AdrModule ? AdrModule : GitHubAdr;
-                    var Script = "";
-                    xhr.addEventListener('load', function (e) {
-                        Script = e.target.responseText;
-                        var timeStop = new Date().getTime();
-                      
-                        if (e.target.status == 200) {
-                            var fn = Function("rootAddress", Script);
-                            fn(adr);
-                            console.log("chargé : (" + (timeStop - timeStart).toString() + "ms) " + e.target.responseURL);
-                        } else {
-                            console.log("erreur sur : " + adr + '/' + Module + " : " + e.target.status + " = " + e.target.responseURL);
-                        }
-                    });
-                    xhr.addEventListener('error', function (e) {
+        var GitHubAdr = "https://raw.githubusercontent.com/JacquesTur/exFunctionsNinox/master"
+        function ChargerModule(AdrModule, Module) {
 
-                        console.error('Request error with status', e.target.status);
-                    });
-                    document.getElementById('exInit').innerText += '\nchargement de ' + adr + '/' + Module;
-                    xhr.open('get', adr + '/' + Module, false);
-                    xhr.send(null);
-                } catch (err) {
-                    var msgErr =
-                        err.message + " à la ligne " + err.line + ", colonne " + err.column;
-                    console.log(" erreur au chargement de " + Script + " : " + err);
-                    $.loading(!1);
-                }
+            try {
+                var xhr = new XMLHttpRequest();
+                var timeStart = new Date().getTime();
+                var adr = AdrModule ? AdrModule : GitHubAdr;
+                var Script = "";
+                xhr.addEventListener('load', function (e) {
+                    Script = e.target.responseText;
+                    var timeStop = new Date().getTime();
+
+                    if (e.target.status == 200) {
+                        var fn = Function("rootAddress", Script);
+                        fn(adr);
+                        console.log("chargé : (" + (timeStop - timeStart).toString() + "ms) " + e.target.responseURL);
+                    } else {
+                        console.log("erreur sur : " + adr + '/' + Module + " : " + e.target.status + " = " + e.target.responseURL);
+                    }
+                });
+                xhr.addEventListener('error', function (e) {
+
+                    console.error('Request error with status', e.target.status);
+                });
+                document.getElementById('exInit').innerText += '\nchargement de ' + adr + '/' + Module;
+                xhr.open('get', adr + '/' + Module, false);
+                xhr.send(null);
+            } catch (err) {
+                var msgErr =
+                    err.message + " à la ligne " + err.line + ", colonne " + err.column;
+                console.log(" erreur au chargement de " + Script + " : " + err);
+                $.loading(!1);
             }
+        }
 
-            function exInit(AdresseDeBase) {
+        function exInit(AdresseDeBase) {
 
-                $.loading(!0);
+            $.loading(!0);
+            try {
                 document.getElementById('exInit').innerText += '';
                 ChargerModule(AdresseDeBase, 'exVersion.js',);
                 ChargerModule(AdresseDeBase, 'Modules/exUtils.js',);
                 ChargerModule(AdresseDeBase, 'Modules/exModule.js',);
                 ChargerModule(AdresseDeBase, 'exFonctions.js',);
+                ChargerModule(AdresseDeBase, 'Modules/exComponentsJT.js',);
                 ChargerModule(AdresseDeBase, 'Modules/exFnJT.js',);
                 ChargerModule(AdresseDeBase, 'Modules/exFnRT.js',);
-                $.loading(!1);
 
-                document.getElementById('exInit').innerText += '\nversion : ' + exRevision;
-
-                // IMPORTANT : force la mise à jour de Ninox pour prendre en compte les fonctions étendues
-                if (!database.adminMode) {
-                    window.database.setSchema(window.database.originalSchema);
-                }
-
-
-
-
+            } catch (err) {
+               
+                console.log('exFunctions : ' + err);
             }
+            $.loading(!1);
+            document.getElementById('exInit').innerText += '\nversion : ' + exRevision;
+
+            // IMPORTANT : force la mise à jour de Ninox pour prendre en compte les fonctions étendues
+            if (!database.adminMode) {
+                window.database.setSchema(window.database.originalSchema);
+            }
+
+
+
+
+        }
             //    exInit();
-            </script>
+    </script>
