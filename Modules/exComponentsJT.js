@@ -8,19 +8,24 @@ window.exComponentsJT = (function () {
                   : exUtils.generateUniqueId("exButtonHeader");
                 var myIcon = params.icon ? "ic ic-" + params.icon : "";
           
-                var button = document.getElementById(myButtonHeaderId);
+                var divMyBouton = document.getElementById(myButtonHeaderId);
                 var myMenuTop = ui.$adminContainer;
                 var color = params.color ? params.color : "blue";
           
                 
           
                 if (myMenuTop) {
-                  if (button) button.remove();
+                  if (divMyBouton) divMyBouton.remove();
           
+                  // Création du div
+                  //////////////////////////////////////////////
+                  var divMyBouton = document.createElement("div");
+
+                  divMyBouton.id = myButtonHeaderId;
+
                   // Création du bouton
                   var button = document.createElement("div");
-          
-                  button.id = myButtonHeaderId;
+
                   button.setAttribute(
                     "class",
                     "nx-button-text "+color
@@ -36,11 +41,9 @@ window.exComponentsJT = (function () {
                       if (err) console.log(err);            
                     }
                   }
-                  button.addEventListener("click", click );
+                  divMyBouton.addEventListener("click", click );
           
-                  // Création du div
-                  //////////////////////////////////////////////
-                  var divMyBouton = document.createElement("div");
+
           
           
                   if (myIcon) {
