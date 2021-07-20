@@ -47,6 +47,8 @@ window.exComponentsJT = (function () {
                     var icon = document.createElement("span");
           
                     icon.setAttribute("class", "choice-symbol " + myIcon);
+                    icon.style.paddingRight = '8px';
+                    icon.style.backgroundClip = 'content-box';
           
                     button.appendChild(icon);
                   }
@@ -56,6 +58,7 @@ window.exComponentsJT = (function () {
                     caption.innerText = myButtonHeaderTitle;
                     button.appendChild(caption);
                   }
+
           
                   //Ajout du bouton dans le div.
                   divMyBouton.appendChild(button);
@@ -65,7 +68,10 @@ window.exComponentsJT = (function () {
              
                   list = myMenuTop.get(0);
                   list.insertBefore(divMyBouton, list.childNodes[0]);
-           
+
+                  debugger;
+                  divMyBouton.style.marginLeft = '4px';
+                  divMyBouton.style.marginRight = '4px';
                 } else cosole.log("exButtonHeader : navigation bar not found !");
           
                 return (button != null && myMenuTop != null);
