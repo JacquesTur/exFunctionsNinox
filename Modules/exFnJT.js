@@ -316,9 +316,28 @@ window.exFnJt = (function () {
       for (idReport in i) {
         var report = i[idReport];
         if (exUtils.getId(params.tableId) == report.tid)
-          l.push(report.caption);
+        {
+          l.push({value:report.id,label:report.caption});
+        }
       }
       ret(l);
+    });
+
+  }
+
+  function exGetReportById(fnt, params, db, ret) {
+    debugger;
+    
+  
+    database.listReports((t, i) => {
+      debugger;
+      var r = "report not found";
+      for (idReport in i) {
+        var report = i[idReport];
+        if (params.id == report.id)
+          r = report;
+      }
+      ret(r);
     });
 
   }
@@ -341,6 +360,7 @@ window.exFnJt = (function () {
   exFunctions.addExFunction("exSetMultiValues", exSetMultiValues);
   exFunctions.addExFunction("exButtonHeader", exButtonHeader);
   exFunctions.addExFunction("exListReportNames", exListReportNames);
+  exFunctions.addExFunction("exGetReportById", exGetReportById);
   return {};
 })();
 
