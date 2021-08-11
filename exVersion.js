@@ -1,4 +1,4 @@
-this.exRevision = "rev 0.00.00.22h";
+this.exRevision = "rev 0.00.00.23b";
 
 console.log("exVersion chargé");
 

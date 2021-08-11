@@ -77,7 +77,7 @@ window.exFnJt = (function () {
         strLines += ">" + label + "</option>";
       }
 
-    
+
       var codeHTML =
         "<select class='stringeditor' style='height: 100%; width:100%; overflow:visible; padding:0px; background:none; padding-left:5px' id=" +
         id +
@@ -161,10 +161,10 @@ window.exFnJt = (function () {
     link.remove();
     console.log(
       "ExDownLoadFile(" +
-        exUtils.getId(params.record) +
-        ", " +
-        params.fileName +
-        ")"
+      exUtils.getId(params.record) +
+      ", " +
+      params.fileName +
+      ")"
     );
 
     ret(downloadLink);
@@ -216,9 +216,9 @@ window.exFnJt = (function () {
       } else
         ret(
           "Le champ " +
-            params.multiFiled +
-            " esr introuvable dans la table " +
-            type.caption
+          params.multiFiled +
+          " esr introuvable dans la table " +
+          type.caption
         );
     } else
       ret(
@@ -303,8 +303,25 @@ window.exFnJt = (function () {
       return ret(msgErr);
     }
   */
-    return ret(exComponentsJT.exButtonHeader( params ));
-   }
+    return ret(exComponentsJT.exButtonHeader(params));
+  }
+
+  function exListReportNames(fnt, params, db, ret) {
+    debugger;
+    
+  
+    database.listReports((t, i) => {
+      debugger;
+      var l = [];
+      for (idReport in i) {
+        var report = i[idReport];
+        if (exUtils.getId(params.tableId) == report.tid)
+          l.push(report.caption);
+      }
+      ret(l);
+    });
+
+  }
   //debugger;
   exFunctions.addExFunction();
   exFunctions.addExFunction("exAlert", exAlert);
@@ -323,6 +340,7 @@ window.exFnJt = (function () {
   exFunctions.addExFunction("exGetComments", exGetComments);
   exFunctions.addExFunction("exSetMultiValues", exSetMultiValues);
   exFunctions.addExFunction("exButtonHeader", exButtonHeader);
+  exFunctions.addExFunction("exListReportNames", exListReportNames);
   return {};
 })();
 
