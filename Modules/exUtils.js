@@ -15,7 +15,7 @@ window.exUtils = (function () {
       try {
         console.log("fireEval(" + fn + ",\n" + recordId + ")");
 
-        var type = database.typeOf(recordId);
+        var type = database.typeOf(getId(recordId));
         var compile = queries.parseSystem(
           database.schema,
           type,
