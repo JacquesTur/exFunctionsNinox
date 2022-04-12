@@ -308,16 +308,15 @@ window.exFnJt = (function () {
 
   function exListReportNames(fnt, params, db, ret) {
     debugger;
-    
-  
+
+
     database.listReports((t, i) => {
       debugger;
       var l = [];
       for (idReport in i) {
         var report = i[idReport];
-        if (exUtils.getId(params.tableId) == report.tid)
-        {
-          l.push({value:report.id,label:report.caption});
+        if (exUtils.getId(params.tableId) == report.tid) {
+          l.push({ value: report.id, label: report.caption });
         }
       }
       ret(l);
@@ -327,8 +326,8 @@ window.exFnJt = (function () {
 
   function exGetReportById(fnt, params, db, ret) {
     debugger;
-    
-  
+
+
     database.listReports((t, i) => {
       debugger;
       var r = "report not found";
@@ -341,6 +340,8 @@ window.exFnJt = (function () {
     });
 
   }
+
+
   //debugger;
   exFunctions.addExFunction();
   exFunctions.addExFunction("exAlert", exAlert);

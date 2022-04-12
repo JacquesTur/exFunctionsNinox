@@ -19,7 +19,7 @@ window.exUtils = (function () {
         var compile = queries.parseSystem(
           database.schema,
           type,
-          unescape("("+fn+")"),
+          unescape("(" + fn + ")"),
           {}
         );
         //            compile.flags ^= 16;
@@ -32,11 +32,11 @@ window.exUtils = (function () {
           return e
             ? "Failed to load record: " + e
             : i
-            ? compile.evaluate(database, i, function (error, t) {
+              ? compile.evaluate(database, i, function (error, t) {
                 if (error) return "Failed to evaluate expression: " + error;
                 return t;
               })
-            : //? compile.evaluateSync(database, i)
+              : //? compile.evaluateSync(database, i)
               "Record not found: " + recordId;
         });
       } catch (err) {
@@ -82,11 +82,11 @@ window.exUtils = (function () {
           return e
             ? "Failed to load record: " + e
             : i
-            ? exp.evaluate(database, i, function (error, t) {
+              ? exp.evaluate(database, i, function (error, t) {
                 if (error) return "Failed to evaluate expression: " + error;
                 return t;
               })
-            : "Record not found: " + recordId;
+              : "Record not found: " + recordId;
         });
       } catch (err) {
         var msgErr =
@@ -165,3 +165,6 @@ window.exUtils = (function () {
 })();
 
 console.log("exUtils chargé");
+
+
+ 

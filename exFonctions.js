@@ -34,6 +34,7 @@ window.exFunctions = (function () {
 
   //Initialise les mise en place des functions étendues au travers de la function eval de Ninox
   if (evalFunctor && Ctx) {
+    debugger;
     //sauvegarde de l'ancienne fonction eval, celle qui a les paramètres eval(string,nid)
     if (evalFunctor.argTypes[0] == "string") {
       evalFunctor.oldFunction = Ctx.F[evalFunctor.functorId];
@@ -76,7 +77,7 @@ window.exFunctions = (function () {
         //Recherche si le premier paramètre de la fonction eval contien strictement le nom d'une fonction étendue
         if (evalFunctor.exFunctions[fnt]) {
           //Si c'est le cas, la fonction correspondante est appelée
-          
+
           evalFunctor.exFunctions[fnt](fnt, params, db, ret);
         } else {
           //Dans le cas contraire, c'est la fonction de Ninox qui est appelée.
@@ -89,7 +90,7 @@ window.exFunctions = (function () {
     };
     Ctx.F[evalFunctor.functorId] = evalFunctor.fn;
 
-  
+
 
     function aa() {
       debugger;
@@ -235,13 +236,13 @@ window.exFunctions = (function () {
       bt = document.getElementById(buttonNavBarId);
       console.log(
         "exButtonNavBar.onclick:" +
-          exUtils.fireEvalGlobal(
-            'onClickButtonNavBarNinox("' +
-              buttonNavBarId +
-              '","' +
-              bt.innerText +
-              '")'
-          )
+        exUtils.fireEvalGlobal(
+          'onClickButtonNavBarNinox("' +
+          buttonNavBarId +
+          '","' +
+          bt.innerText +
+          '")'
+        )
       );
     },
 
@@ -249,13 +250,13 @@ window.exFunctions = (function () {
       bt = document.getElementById(buttonNavBarId);
       console.log(
         "exButtonNavBar.onclick:" +
-          exUtils.fireEvalGlobal(
-            'onClickButtonNavBarNinoxTravaux("' +
-              buttonNavBarId +
-              '","' +
-              bt.innerText +
-              '")'
-          )
+        exUtils.fireEvalGlobal(
+          'onClickButtonNavBarNinoxTravaux("' +
+          buttonNavBarId +
+          '","' +
+          bt.innerText +
+          '")'
+        )
       );
     },
 
@@ -263,13 +264,13 @@ window.exFunctions = (function () {
       bt = document.getElementById(buttonNavBarId);
       console.log(
         "exButtonNavBar.onclick:" +
-          exUtils.fireEvalGlobal(
-            'onClickButtonNavBarNinoxActions("' +
-              buttonNavBarId +
-              '","' +
-              bt.innerText +
-              '")'
-          )
+        exUtils.fireEvalGlobal(
+          'onClickButtonNavBarNinoxActions("' +
+          buttonNavBarId +
+          '","' +
+          bt.innerText +
+          '")'
+        )
       );
     },
 
@@ -278,13 +279,13 @@ window.exFunctions = (function () {
       bt = document.getElementById(buttonNavBarId);
       console.log(
         "exButtonNavBar.onclick:" +
-          exUtils.fireEvalGlobal(
-            'onSelectCustomerNinoxNavBar("' +
-              buttonNavBarId +
-              '","' +
-              myIdCustomer +
-              '")'
-          )
+        exUtils.fireEvalGlobal(
+          'onSelectCustomerNinoxNavBar("' +
+          buttonNavBarId +
+          '","' +
+          myIdCustomer +
+          '")'
+        )
       );
       //console.log('exButtonNavBar.onclick:' + exUtils.fireEvalGlobal('onSelectCustomerNinoxNavBar("' + buttonNavBarId + '","' + myIdCustomer + '")'));
     },
@@ -292,3 +293,7 @@ window.exFunctions = (function () {
 })();
 
 console.log('exFonctions chargé');
+
+
+
+
