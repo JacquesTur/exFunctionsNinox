@@ -36,8 +36,9 @@ window.exFunctions = (function () {
   if (evalFunctor && Ctx) {
     debugger;
     //sauvegarde de l'ancienne fonction eval, celle qui a les paramètres eval(string,nid)
-    if (evalFunctor.argTypes[0] == "string") {
-      evalFunctor.oldFunction = Ctx.F[evalFunctor.functorId];
+    //if (evalFunctor.argTypes[0] == "string") {
+      if (!evalFunctor.oldFunction) {
+        evalFunctor.oldFunction = Ctx.F[evalFunctor.functorId];
     }
 
     //initialisation des nouveaux type de paramètres : eval(any,any)
@@ -72,7 +73,7 @@ window.exFunctions = (function () {
         
         */
     evalFunctor.fn = function (fnt, params, db, ret) {
-      //debugger;
+      debugger;
       try {
         //Recherche si le premier paramètre de la fonction eval contien strictement le nom d'une fonction étendue
         if (evalFunctor.exFunctions[fnt]) {
